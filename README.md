@@ -59,6 +59,7 @@ DB_USER=postgres
 DB_PASSWORD=your_password
 DB_NAME=library_inventory
 DB_PORT=5432
+FORCE_DB_INIT=false  # Optional: set to 'true' to force DB reinitialization
 ```
 
 ### Install Dependencies
@@ -67,9 +68,11 @@ DB_PORT=5432
 npm install
 ```
 
-### Initialize / Seed the Database
+### Database Setup
 
-The script will drop and recreate tables, types, and functions, then insert sample data.
+**Automatic Setup (Recommended)**: The app will automatically check and initialize the database on first run. No manual setup required!
+
+**Manual Setup (Optional)**: If you prefer to manually populate the database:
 
 ```
 npm run populate
@@ -102,6 +105,17 @@ npm run dev
 - Tailwind CSS is loaded via CDN in `views/layout.ejs`; no build step required.
 - Forms use dark inputs for readability; tables and headers follow a library/manuscript theme with antique-gold accents.
 
+## Deployment
+
+This app is deployment-ready with automatic database initialization. Perfect for platforms like:
+
+- **Railway**: Just connect your PostgreSQL service and deploy
+- **Heroku**: Add Heroku Postgres addon and deploy
+- **Render**: Connect PostgreSQL database and deploy
+- **Vercel**: Use with Vercel Postgres
+
+The app will automatically detect if the database needs setup and initialize it on first run. No manual database setup required!
+
 ## Database Source & Migration Notes
 
 The schema (tables, relationships, sample data, and stored logic) originated in a MySQL implementation from my earlier project:
@@ -121,9 +135,10 @@ This adaptation preserves intent while leveraging PostgreSQL features for robust
 
 ## Scripts
 
-- `npm start` — Start the server
+- `npm start` — Start the server (auto-initializes DB if needed)
 - `npm run dev` — Start with watch mode (Node --watch)
-- `npm run populate` — (Re)create and seed the PostgreSQL database
+- `npm run populate` — Manually (re)create and seed the PostgreSQL database
+- `npm run reset-db` — Force reinitialize database on startup
 
 ## License
 

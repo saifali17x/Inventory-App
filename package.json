@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
-    "populate": "node db/populatedb.js"
+    "populate": "node db/populatedb.js",
+    "reset-db": "FORCE_DB_INIT=true node index.js"
   },
   "author": "",
   "license": "MIT",

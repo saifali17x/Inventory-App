@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import expressLayouts from "express-ejs-layouts";
+import { initializeDatabase, isDatabaseInitialized } from "./db/init.js";
 
 // Import routes
 import indexRouter from "./routes/index.js";
@@ -44,6 +45,32 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+
+// Initialize database and start server
+async function startServer() {
+  try {
+    // Check if we should force initialize or if database needs initialization
+    const shouldForceInit = process.env.FORCE_DB_INIT === "true";
+    const dbInitialized = await isDatabaseInitialized();
+
+    if (shouldForceInit || !dbInitialized) {
+      console.log(
+        shouldForceInit
+          ? "🔄 Force initializing database..."
+          : "📦 Database not found, initializing..."
+      );
+      await initializeDatabase();
+    } else {
+      console.log("✅ Database already initialized");
+    }
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("💥 Failed to start server:", error);
+    process.exit(1);
+  }
+}
+
+startServer();
