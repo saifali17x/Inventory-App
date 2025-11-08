@@ -22,9 +22,16 @@ app.set("layout", "layout");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("."));
 
+// Request logging for Railway debugging
+app.use((req, res, next) => {
+  console.log(`📥 ${req.method} ${req.path} - ${new Date().toISOString()}`);
+  next();
+});
+
 // Health check endpoint for Railway
 app.get("/health", (req, res) => {
-  res.status(200).json({ status: "OK", timestamp: new Date().toISOString() });
+  console.log("💚 Health check accessed");
+  res.status(200).json({ status: "OK", timestamp: new Date().toISOString(), port: process.env.PORT });
 });
 
 // Routes

@@ -189,9 +189,10 @@ INSERT INTO Transactions (member_id, book_id, staff_id, issue_date, due_date, re
 export async function initializeDatabase() {
   const isProd = process.env.NODE_ENV === "production";
 
-  const isRailway = process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID;
+  const isRailway =
+    process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID;
 
-  // Debug logging 
+  // Debug logging
   console.log("🔍 Environment debug:", {
     NODE_ENV: process.env.NODE_ENV,
     RAILWAY_ENV: process.env.RAILWAY_ENVIRONMENT_NAME,
@@ -202,11 +203,13 @@ export async function initializeDatabase() {
 
   // Force Railway to use correct database configuration
   let clientConfig;
-  
+
   if (isRailway || (isProd && process.env.DATABASE_URL)) {
     console.log("🚂 Railway deployment detected - using DATABASE_URL");
     clientConfig = {
-      connectionString: process.env.DATABASE_URL || "postgresql://postgres:NrpzjStfDtpBRbtGuFofSiDUxkBiTDFd@shinkansen.proxy.rlwy.net:40659/railway",
+      connectionString:
+        process.env.DATABASE_URL ||
+        "postgresql://postgres:NrpzjStfDtpBRbtGuFofSiDUxkBiTDFd@shinkansen.proxy.rlwy.net:40659/railway",
       ssl: { rejectUnauthorized: false },
     };
   } else {
@@ -221,7 +224,12 @@ export async function initializeDatabase() {
     };
   }
 
-  console.log("🔧 Using config type:", isRailway || (isProd && process.env.DATABASE_URL) ? "DATABASE_URL" : "Individual params");
+  console.log(
+    "🔧 Using config type:",
+    isRailway || (isProd && process.env.DATABASE_URL)
+      ? "DATABASE_URL"
+      : "Individual params"
+  );
   const client = new Client(clientConfig);
 
   try {
@@ -242,22 +250,27 @@ export async function initializeDatabase() {
  */
 export async function isDatabaseInitialized() {
   const isProd = process.env.NODE_ENV === "production";
-  const isRailway = process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID;
+  const isRailway =
+    process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID;
 
   // Force Railway to use correct database configuration
-  const clientConfig = (isRailway || (isProd && process.env.DATABASE_URL))
-    ? {
-        connectionString: process.env.DATABASE_URL || "postgresql://postgres:NrpzjStfDtpBRbtGuFofSiDUxkBiTDFd@shinkansen.proxy.rlwy.net:40659/railway",
-        ssl: { rejectUnauthorized: false },
-      }
-    : {
-        host: process.env.DB_HOST || "shinkansen.proxy.rlwy.net",
-        user: process.env.DB_USER || "postgres",
-        database: process.env.DB_NAME || "railway",
-        password: process.env.DB_PASSWORD || "NrpzjStfDtpBRbtGuFofSiDUxkBiTDFd",
-        port: parseInt(process.env.DB_PORT) || 40659,
-        ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
-      };
+  const clientConfig =
+    isRailway || (isProd && process.env.DATABASE_URL)
+      ? {
+          connectionString:
+            process.env.DATABASE_URL ||
+            "postgresql://postgres:NrpzjStfDtpBRbtGuFofSiDUxkBiTDFd@shinkansen.proxy.rlwy.net:40659/railway",
+          ssl: { rejectUnauthorized: false },
+        }
+      : {
+          host: process.env.DB_HOST || "shinkansen.proxy.rlwy.net",
+          user: process.env.DB_USER || "postgres",
+          database: process.env.DB_NAME || "railway",
+          password:
+            process.env.DB_PASSWORD || "NrpzjStfDtpBRbtGuFofSiDUxkBiTDFd",
+          port: parseInt(process.env.DB_PORT) || 40659,
+          ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+        };
 
   const client = new Client(clientConfig);
 
