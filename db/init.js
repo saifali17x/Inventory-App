@@ -1,4 +1,6 @@
 import { Client } from "pg";
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
 
 const SQL = `
 -- Drop existing tables if they exist (in reverse order due to foreign keys)
@@ -185,13 +187,24 @@ INSERT INTO Transactions (member_id, book_id, staff_id, issue_date, due_date, re
  * Safe to run multiple times - will recreate everything
  */
 export async function initializeDatabase() {
-  const client = new Client({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-  });
+  const isProd = process.env.NODE_ENV === "production";
+
+  const clientConfig =
+    isProd && process.env.DATABASE_URL
+      ? {
+          connectionString: process.env.DATABASE_URL,
+          ssl: { rejectUnauthorized: false },
+        }
+      : {
+          host: process.env.DB_HOST,
+          user: process.env.DB_USER,
+          database: process.env.DB_NAME,
+          password: process.env.DB_PASSWORD,
+          port: process.env.DB_PORT,
+          ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+        };
+
+  const client = new Client(clientConfig);
 
   try {
     console.log("🔄 Initializing database...");
@@ -210,13 +223,24 @@ export async function initializeDatabase() {
  * Check if database tables exist
  */
 export async function isDatabaseInitialized() {
-  const client = new Client({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-  });
+  const isProd = process.env.NODE_ENV === "production";
+
+  const clientConfig =
+    isProd && process.env.DATABASE_URL
+      ? {
+          connectionString: process.env.DATABASE_URL,
+          ssl: { rejectUnauthorized: false },
+        }
+      : {
+          host: process.env.DB_HOST,
+          user: process.env.DB_USER,
+          database: process.env.DB_NAME,
+          password: process.env.DB_PASSWORD,
+          port: process.env.DB_PORT,
+          ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+        };
+
+  const client = new Client(clientConfig);
 
   try {
     await client.connect();
