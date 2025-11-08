@@ -31,7 +31,11 @@ app.use((req, res, next) => {
 // Health check endpoint for Railway
 app.get("/health", (req, res) => {
   console.log("💚 Health check accessed");
-  res.status(200).json({ status: "OK", timestamp: new Date().toISOString(), port: process.env.PORT });
+  res.status(200).json({
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    port: process.env.PORT,
+  });
 });
 
 // Routes
@@ -79,6 +83,18 @@ async function startServer() {
 
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`🚀 Server running on port ${PORT}`);
+      console.log(
+        `🌐 App should be available at: https://inventory-app-production-a138.up.railway.app/`
+      );
+      console.log(
+        `💚 Health check at: https://inventory-app-production-a138.up.railway.app/health`
+      );
+      console.log(`🔧 Environment: ${process.env.NODE_ENV || "development"}`);
+      console.log(
+        `📊 Railway Environment: ${
+          process.env.RAILWAY_ENVIRONMENT_NAME || "not detected"
+        }`
+      );
     });
   } catch (error) {
     console.error("💥 Failed to start server:", error);
