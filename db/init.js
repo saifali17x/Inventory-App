@@ -189,20 +189,15 @@ INSERT INTO Transactions (member_id, book_id, staff_id, issue_date, due_date, re
 export async function initializeDatabase() {
   const isProd = process.env.NODE_ENV === "production";
 
-  const clientConfig =
-    isProd && process.env.DATABASE_URL
-      ? {
-          connectionString: process.env.DATABASE_URL,
-          ssl: { rejectUnauthorized: false },
-        }
-      : {
-          host: process.env.DB_HOST,
-          user: process.env.DB_USER,
-          database: process.env.DB_NAME,
-          password: process.env.DB_PASSWORD,
-          port: process.env.DB_PORT,
-          ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
-        };
+  // Always use individual config parameters to avoid Railway's incorrect DATABASE_URL
+  const clientConfig = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: String(process.env.DB_PASSWORD),
+    port: parseInt(process.env.DB_PORT),
+    ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+  };
 
   const client = new Client(clientConfig);
 
@@ -225,20 +220,15 @@ export async function initializeDatabase() {
 export async function isDatabaseInitialized() {
   const isProd = process.env.NODE_ENV === "production";
 
-  const clientConfig =
-    isProd && process.env.DATABASE_URL
-      ? {
-          connectionString: process.env.DATABASE_URL,
-          ssl: { rejectUnauthorized: false },
-        }
-      : {
-          host: process.env.DB_HOST,
-          user: process.env.DB_USER,
-          database: process.env.DB_NAME,
-          password: process.env.DB_PASSWORD,
-          port: process.env.DB_PORT,
-          ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
-        };
+  // Always use individual config parameters to avoid Railway's incorrect DATABASE_URL
+  const clientConfig = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: String(process.env.DB_PASSWORD),
+    port: parseInt(process.env.DB_PORT),
+    ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+  };
 
   const client = new Client(clientConfig);
 
