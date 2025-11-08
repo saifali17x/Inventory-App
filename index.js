@@ -22,22 +22,6 @@ app.set("layout", "layout");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("."));
 
-// Request logging for Railway debugging
-app.use((req, res, next) => {
-  console.log(`📥 ${req.method} ${req.path} - ${new Date().toISOString()}`);
-  next();
-});
-
-// Health check endpoint for Railway
-app.get("/health", (req, res) => {
-  console.log("💚 Health check accessed");
-  res.status(200).json({
-    status: "OK",
-    timestamp: new Date().toISOString(),
-    port: process.env.PORT,
-  });
-});
-
 // Routes
 app.use("/", indexRouter);
 app.use("/books", booksRouter);
@@ -68,10 +52,7 @@ async function startServer() {
   try {
     // Check if we should force initialize or if database needs initialization
     const shouldForceInit = process.env.FORCE_DB_INIT === "true";
-    const isRailway = process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID;
-    
-    // Force reinitialize on Railway to fix ownership conflicts
-    const dbInitialized = isRailway ? false : await isDatabaseInitialized();
+    const dbInitialized = await isDatabaseInitialized();
 
     if (shouldForceInit || !dbInitialized) {
       console.log(
@@ -86,18 +67,6 @@ async function startServer() {
 
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`🚀 Server running on port ${PORT}`);
-      console.log(
-        `🌐 App should be available at: https://inventory-app-production-a138.up.railway.app/`
-      );
-      console.log(
-        `💚 Health check at: https://inventory-app-production-a138.up.railway.app/health`
-      );
-      console.log(`🔧 Environment: ${process.env.NODE_ENV || "development"}`);
-      console.log(
-        `📊 Railway Environment: ${
-          process.env.RAILWAY_ENVIRONMENT_NAME || "not detected"
-        }`
-      );
     });
   } catch (error) {
     console.error("💥 Failed to start server:", error);

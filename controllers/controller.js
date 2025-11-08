@@ -3,33 +3,18 @@ import * as queries from "../db/queries.js";
 // HOME CONTROLLER
 export const getHome = async (req, res) => {
   try {
-    console.log("🏠 Loading dashboard...");
     const stats = await queries.getDashboardStats();
     const recentTransactions = await queries.getActiveTransactions();
     const overdueBooks = await queries.getOverdueTransactions();
 
-    console.log("✅ Dashboard data loaded successfully");
     res.render("index", {
       stats,
       recentTransactions: recentTransactions.slice(0, 5),
       overdueBooks: overdueBooks.slice(0, 5),
     });
   } catch (error) {
-    console.error("❌ Error loading dashboard:", error);
-    console.error("Error details:", error.message);
-
-    // Fallback for Railway deployment issues
-    res.render("index", {
-      stats: {
-        totalBooks: 0,
-        totalMembers: 0,
-        activeTransactions: 0,
-        overdueCount: 0,
-      },
-      recentTransactions: [],
-      overdueBooks: [],
-      error: "Dashboard data temporarily unavailable",
-    });
+    console.error("Error loading dashboard:", error);
+    res.status(500).render("error", { error: "Failed to load dashboard" });
   }
 };
 
