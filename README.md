@@ -2,6 +2,10 @@
 
 Elegant library inventory built with Express, EJS, TailwindCSS and PostgreSQL. It provides a manuscript-inspired UI for managing Books, Authors, Categories, and Members with a clean MVC structure and server-side rendered views.
 
+## 🌐 Live Demo
+
+**[https://inventory-app-production-a138.up.railway.app/](https://inventory-app-production-a138.up.railway.app/)**
+
 > Database attribution: The original schema and seed data were written in **MySQL** in my previous project (https://github.com/saifali17x/LibraryMS_DB.git). For this application I performed a full conversion to **PostgreSQL** (ENUM types, functions, serial keys, and procedural logic) and adapted it to the Express/EJS stack.
 
 ## Tech Stack
