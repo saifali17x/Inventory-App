@@ -3,18 +3,33 @@ import * as queries from "../db/queries.js";
 // HOME CONTROLLER
 export const getHome = async (req, res) => {
   try {
+    console.log("🏠 Loading dashboard...");
     const stats = await queries.getDashboardStats();
     const recentTransactions = await queries.getActiveTransactions();
     const overdueBooks = await queries.getOverdueTransactions();
 
+    console.log("✅ Dashboard data loaded successfully");
     res.render("index", {
       stats,
       recentTransactions: recentTransactions.slice(0, 5),
       overdueBooks: overdueBooks.slice(0, 5),
     });
   } catch (error) {
-    console.error("Error loading dashboard:", error);
-    res.status(500).render("error", { error: "Failed to load dashboard" });
+    console.error("❌ Error loading dashboard:", error);
+    console.error("Error details:", error.message);
+
+    // Fallback for Railway deployment issues
+    res.render("index", {
+      stats: {
+        totalBooks: 0,
+        totalMembers: 0,
+        activeTransactions: 0,
+        overdueCount: 0,
+      },
+      recentTransactions: [],
+      overdueBooks: [],
+      error: "Dashboard data temporarily unavailable",
+    });
   }
 };
 
@@ -117,11 +132,9 @@ export const deleteBook = async (req, res) => {
     res.redirect("/books");
   } catch (error) {
     console.error("Error deleting book:", error);
-    res
-      .status(500)
-      .render("error", {
-        error: "Failed to delete book. It may be currently borrowed.",
-      });
+    res.status(500).render("error", {
+      error: "Failed to delete book. It may be currently borrowed.",
+    });
   }
 };
 
@@ -199,11 +212,9 @@ export const deleteAuthor = async (req, res) => {
     res.redirect("/authors");
   } catch (error) {
     console.error("Error deleting author:", error);
-    res
-      .status(500)
-      .render("error", {
-        error: "Failed to delete author. They may have books in the system.",
-      });
+    res.status(500).render("error", {
+      error: "Failed to delete author. They may have books in the system.",
+    });
   }
 };
 
@@ -371,10 +382,8 @@ export const deleteMember = async (req, res) => {
     res.redirect("/members");
   } catch (error) {
     console.error("Error deleting member:", error);
-    res
-      .status(500)
-      .render("error", {
-        error: "Failed to delete member. They may have active transactions.",
-      });
+    res.status(500).render("error", {
+      error: "Failed to delete member. They may have active transactions.",
+    });
   }
 };

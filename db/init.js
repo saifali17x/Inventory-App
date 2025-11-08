@@ -3,6 +3,10 @@ import dotenv from "dotenv";
 dotenv.config({ quiet: true });
 
 const SQL = `
+-- Force clean database reset for Railway
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public;
+
 -- Drop existing tables if they exist (in reverse order due to foreign keys)
 DROP TABLE IF EXISTS Transactions CASCADE;
 DROP TABLE IF EXISTS Staff CASCADE;

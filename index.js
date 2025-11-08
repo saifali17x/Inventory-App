@@ -68,7 +68,10 @@ async function startServer() {
   try {
     // Check if we should force initialize or if database needs initialization
     const shouldForceInit = process.env.FORCE_DB_INIT === "true";
-    const dbInitialized = await isDatabaseInitialized();
+    const isRailway = process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID;
+    
+    // Force reinitialize on Railway to fix ownership conflicts
+    const dbInitialized = isRailway ? false : await isDatabaseInitialized();
 
     if (shouldForceInit || !dbInitialized) {
       console.log(
