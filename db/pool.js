@@ -6,15 +6,20 @@ const { Pool } = pkg;
 
 const isProd = process.env.NODE_ENV === "production";
 
-// Always use individual config parameters to avoid Railway's incorrect DATABASE_URL
-const poolConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: String(process.env.DB_PASSWORD), // Ensure password is a string
-  port: parseInt(process.env.DB_PORT),
-  ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
-};
+// Use DATABASE_URL if available (Railway), otherwise use individual config
+const poolConfig = process.env.DATABASE_URL
+  ? {
+      connectionString: process.env.DATABASE_URL,
+      ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+    }
+  : {
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME,
+      password: String(process.env.DB_PASSWORD),
+      port: parseInt(process.env.DB_PORT),
+      ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+    };
 
 const pool = new Pool(poolConfig);
 
