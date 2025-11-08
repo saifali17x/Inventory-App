@@ -1,0 +1,159 @@
+<!-- Reader Profile Archive -->
+<div class="mb-8">
+    <!-- Navigation & Actions -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <a href="/members"
+            class="inline-flex items-center gap-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
+            <i class="fas fa-arrow-left"></i>
+            <span class="font-serif">Return to Registry</span>
+        </a>
+        <a href="/members/<%= member.member_id %>/edit"
+            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+            <i class="fas fa-user-edit"></i>
+            Amend Record
+        </a>
+    </div>
+
+    <!-- Reader Profile Card -->
+    <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+        <!-- Profile Header -->
+        <div
+            class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-8 py-12 border-b border-antique-gold/30 text-center relative">
+            <div
+                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-antique-gold/50 via-parchment to-antique-gold/50">
+            </div>
+            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wide">
+                <%= member.first_name %>
+                    <%= member.last_name %>
+            </h1>
+            <div class="flex justify-center gap-4 mb-4">
+                <span class="px-4 py-2 rounded-full text-sm font-semibold 
+                    <%= member.membership_type === 'Student' ? 'bg-forest-green/20 text-forest-green border border-forest-green/30' : 
+                        member.membership_type === 'Faculty' ? 'bg-antique-gold/20 text-antique-gold border border-antique-gold/30' : 
+                        'bg-sage-green/20 text-sage-green border border-sage-green/30' %>">
+                    <%= member.membership_type %> Scholar
+                </span>
+                <span class="px-4 py-2 rounded-full text-sm font-semibold 
+                    <%= member.status === 'Active' ? 'bg-forest-green/20 text-forest-green border border-forest-green/30' : 
+                        'bg-clay-red/20 text-clay-red border border-clay-red/30' %>">
+                    <%= member.status %>
+                </span>
+            </div>
+            <div class="mt-4 flex justify-center">
+                <i class="fas fa-user-graduate text-antique-gold/40 text-2xl"></i>
+            </div>
+        </div>
+
+        <!-- Information Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+            <!-- Personal Details -->
+            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-antique-gold/20">
+                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+                    <i class="fas fa-scroll text-antique-gold"></i>
+                    Personal Details
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Full Name</label>
+                        <span class="text-warm-white font-serif text-lg">
+                            <%= member.first_name %>
+                                <%= member.last_name %>
+                        </span>
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Correspondence
+                            Address</label>
+                        <span class="text-aged-paper font-serif">
+                            <%= member.email %>
+                        </span>
+                    </div>
+
+                    <% if (member.phone) { %>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Communication
+                                Line</label>
+                            <span class="text-aged-paper font-serif">
+                                <%= member.phone %>
+                            </span>
+                        </div>
+                        <% } %>
+
+                            <% if (member.address) { %>
+                                <div class="flex flex-col gap-1">
+                                    <label
+                                        class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Dwelling
+                                        Address</label>
+                                    <span class="text-aged-paper font-serif">
+                                        <%= member.address %>
+                                    </span>
+                                </div>
+                                <% } %>
+                </div>
+            </div>
+
+            <!-- Membership Status -->
+            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-sage-green/20">
+                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+                    <i class="fas fa-certificate text-sage-green"></i>
+                    Membership Record
+                </h3>
+                <div class="space-y-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-warm-white mb-2 font-serif">
+                            Member #<%= member.member_id %>
+                        </div>
+                        <p class="text-parchment text-sm font-serif uppercase tracking-wider">Registry Number</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 text-center">
+                        <div class="bg-antique-gold/10 p-4 rounded-lg border border-antique-gold/30">
+                            <div class="text-lg font-bold text-antique-gold mb-1 font-serif">
+                                <%= new Date(member.membership_date).toLocaleDateString() %>
+                            </div>
+                            <p class="text-parchment text-xs font-serif">Registration Date</p>
+                        </div>
+
+                        <div
+                            class="bg-<%= member.membership_type === 'Student' ? 'forest-green' : member.membership_type === 'Faculty' ? 'antique-gold' : 'sage-green' %>/10 p-4 rounded-lg border border-<%= member.membership_type === 'Student' ? 'forest-green' : member.membership_type === 'Faculty' ? 'antique-gold' : 'sage-green' %>/30">
+                            <div
+                                class="text-lg font-bold text-<%= member.membership_type === 'Student' ? 'forest-green' : member.membership_type === 'Faculty' ? 'antique-gold' : 'sage-green' %> mb-1 font-serif">
+                                <%= member.membership_type %>
+                            </div>
+                            <p class="text-parchment text-xs font-serif">Scholar Type</p>
+                        </div>
+
+                        <div
+                            class="bg-<%= member.status === 'Active' ? 'forest-green' : 'clay-red' %>/10 p-4 rounded-lg border border-<%= member.status === 'Active' ? 'forest-green' : 'clay-red' %>/30">
+                            <div
+                                class="text-lg font-bold text-<%= member.status === 'Active' ? 'forest-green' : 'clay-red' %> mb-1 font-serif">
+                                <%= member.status %>
+                            </div>
+                            <p class="text-parchment text-xs font-serif">Current Status</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member Actions -->
+        <div class="px-8 py-6 bg-gradient-to-r from-deep-walnut/30 to-transparent border-t border-antique-gold/20">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/members/<%= member.member_id %>/edit"
+                    class="inline-flex items-center justify-center gap-3 px-8 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+                    <i class="fas fa-user-edit"></i>
+                    Amend Record
+                </a>
+                <form method="POST" action="/members/<%= member.member_id %>/delete"
+                    onsubmit="return confirmDelete('Are you certain you wish to remove this reader from the registry? This action cannot be undone.')"
+                    class="inline">
+                    <button type="submit"
+                        class="inline-flex items-center justify-center gap-3 px-8 py-3 bg-clay-red/20 text-clay-red border-2 border-clay-red/40 rounded-xl font-bold font-serif hover:bg-clay-red hover:text-white transition-all duration-300 hover:-translate-y-1">
+                        <i class="fas fa-user-slash"></i>
+                        Remove from Registry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

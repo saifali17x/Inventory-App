@@ -1,0 +1,131 @@
+<!-- Library Collection Archive -->
+<div class="mb-12">
+    <!-- Elegant Header with Manuscript Style -->
+    <div class="text-center mb-12">
+        <div class="bg-charcoal px-8 inline-block">
+            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wider">
+                <i class="fas fa-book-open text-antique-gold mr-4"></i>
+                The Great Collection
+                <i class="fas fa-book-open text-antique-gold ml-4"></i>
+            </h1>
+            <p class="text-parchment text-lg italic">Catalog of Literary Treasures</p>
+        </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="flex justify-between items-center mb-8">
+        <div class="text-aged-paper font-serif">
+            <i class="fas fa-scroll mr-2 text-antique-gold"></i>
+            <span class="text-lg">
+                <%= books.length %> volumes in collection
+            </span>
+        </div>
+        <a href="/books/create"
+            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm">
+            <i class="fas fa-book-plus"></i>
+            Catalog New Volume
+        </a>
+    </div>
+
+    <% if (books.length> 0) { %>
+        <!-- Elegant Library Catalog Table -->
+        <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+            <div
+                class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-6 py-4 border-b border-antique-gold/30">
+                <h2 class="text-warm-white font-serif font-bold text-xl flex items-center gap-2">
+                    <i class="fas fa-archive text-antique-gold"></i>
+                    Collection Registry
+                </h2>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-deep-walnut border-b border-antique-gold/20">
+                            <th class="text-left py-4 px-6 text-parchment font-serif font-semibold">Title</th>
+                            <th class="text-left py-4 px-4 text-parchment font-serif font-semibold">Author</th>
+                            <th class="text-left py-4 px-4 text-parchment font-serif font-semibold">Category</th>
+                            <th class="text-left py-4 px-4 text-parchment font-serif font-semibold">Publisher</th>
+                            <th class="text-left py-4 px-4 text-parchment font-serif font-semibold">Year</th>
+                            <th class="text-left py-4 px-4 text-parchment font-serif font-semibold">Available</th>
+                            <th class="text-center py-4 px-4 text-parchment font-serif font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-antique-gold/10">
+                        <% books.forEach(book=> { %>
+                            <tr class="hover:bg-deep-walnut/50 transition-all duration-200 group">
+                                <td class="py-4 px-6">
+                                    <a href="/books/<%= book.book_id %>"
+                                        class="text-warm-white hover:text-antique-gold font-serif font-medium transition-colors duration-200 flex items-center gap-2 group-hover:translate-x-1">
+                                        <i class="fas fa-book text-antique-gold/60 text-sm"></i>
+                                        <%= book.title %>
+                                    </a>
+                                </td>
+                                <td class="py-4 px-4 text-aged-paper font-serif">
+                                    <%= book.first_name %>
+                                        <%= book.last_name %>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span
+                                        class="px-3 py-1 rounded-full text-xs font-semibold bg-forest-green/20 text-forest-green border border-forest-green/30">
+                                        <%= book.category_name %>
+                                    </span>
+                                </td>
+                                <td class="py-4 px-4 text-aged-paper font-serif">
+                                    <%= book.publisher_name %>
+                                </td>
+                                <td class="py-4 px-4 text-aged-paper font-serif">
+                                    <%= book.publication_year %>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span class="text-sage-green font-bold font-serif">
+                                        <%= book.copies_available %>/<%= book.total_copies %>
+                                    </span>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <a href="/books/<%= book.book_id %>"
+                                            class="p-2 bg-sage-green/20 text-sage-green rounded-lg hover:bg-sage-green hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                                            title="View Details">
+                                            <i class="fas fa-eye text-sm"></i>
+                                        </a>
+                                        <a href="/books/<%= book.book_id %>/edit"
+                                            class="p-2 bg-antique-gold/20 text-antique-gold rounded-lg hover:bg-antique-gold hover:text-espresso transition-all duration-200 hover:-translate-y-0.5"
+                                            title="Edit Book">
+                                            <i class="fas fa-edit text-sm"></i>
+                                        </a>
+                                        <form method="POST" action="/books/<%= book.book_id %>/delete"
+                                            onsubmit="return confirmDelete('Are you sure you want to remove this volume from the archives?')"
+                                            class="inline">
+                                            <button type="submit"
+                                                class="p-2 bg-clay-red/20 text-clay-red rounded-lg hover:bg-clay-red hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                                                title="Remove from Collection">
+                                                <i class="fas fa-trash text-sm"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% } else { %>
+            <!-- Empty Collection State -->
+            <div class="text-center py-24 bg-walnut rounded-2xl border-2 border-antique-gold/30 shadow-book">
+                <div class="mb-8">
+                    <i class="fas fa-scroll text-6xl text-antique-gold/60 mb-4"></i>
+                    <h3 class="text-warm-white text-3xl font-bold mb-4 font-serif">The Archive Awaits</h3>
+                    <p class="text-aged-paper text-lg font-serif italic max-w-md mx-auto">
+                        No volumes have been cataloged yet. Begin building your literary collection.
+                    </p>
+                </div>
+                <a href="/books/create"
+                    class="inline-flex items-center gap-3 px-8 py-4 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-lg">
+                    <i class="fas fa-feather-alt"></i>
+                    Inscribe First Volume
+                </a>
+            </div>
+            <% } %>
+</div>

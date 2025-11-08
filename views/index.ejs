@@ -1,0 +1,250 @@
+<!-- Library Dashboard with Elegant Manuscript Style -->
+<div class="space-y-12">
+    <!-- Grand Welcome Header -->
+    <div class="text-center mb-16 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-antique-gold/20 to-transparent h-px top-1/2">
+        </div>
+        <div class="relative bg-charcoal px-8 inline-block">
+            <h1 class="text-warm-white text-5xl font-bold mb-4 font-serif tracking-wider">
+                <i class="fas fa-scroll text-antique-gold mr-4"></i>
+                Library Archives
+                <i class="fas fa-scroll text-antique-gold ml-4"></i>
+            </h1>
+            <p class="text-parchment text-xl italic">Guardians of Knowledge • Keepers of Stories</p>
+        </div>
+    </div>
+
+    <!-- Library Statistics - Like Illuminated Manuscripts -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <!-- Total Books Card -->
+        <div
+            class="bg-walnut p-8 rounded-2xl shadow-book border-2 border-antique-gold/30 hover:border-antique-gold transition-all duration-500 hover:shadow-warm hover:-translate-y-1 relative overflow-hidden">
+            <div
+                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-antique-gold/50 via-parchment to-antique-gold/50">
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-5xl text-antique-gold">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold text-warm-white mb-2 font-serif">
+                        <%= stats.totalBooks %>
+                    </h3>
+                    <p class="text-parchment font-medium tracking-wide uppercase text-sm">Volumes in Collection</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Members Card -->
+        <div
+            class="bg-walnut p-8 rounded-2xl shadow-book border-2 border-forest-green/30 hover:border-forest-green transition-all duration-500 hover:shadow-warm hover:-translate-y-1 relative overflow-hidden">
+            <div
+                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-forest-green/50 via-sage-green to-forest-green/50">
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-5xl text-forest-green">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold text-warm-white mb-2 font-serif">
+                        <%= stats.totalMembers %>
+                    </h3>
+                    <p class="text-parchment font-medium tracking-wide uppercase text-sm">Active Scholars</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Books Issued Card -->
+    <div
+        class="bg-walnut p-8 rounded-2xl shadow-book border-2 border-sage-green/30 hover:border-sage-green transition-all duration-500 hover:shadow-warm hover:-translate-y-1 relative overflow-hidden">
+        <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sage-green/50 via-forest-green to-sage-green/50">
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="text-5xl text-sage-green">
+                <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-warm-white mb-2 font-serif">
+                    <%= stats.activeTransactions %>
+                </h3>
+                <p class="text-parchment font-medium tracking-wide uppercase text-sm">Books on Loan</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overdue Books Card -->
+    <div
+        class="bg-walnut p-8 rounded-2xl shadow-book border-2 border-clay-red/30 hover:border-clay-red transition-all duration-500 hover:shadow-warm hover:-translate-y-1 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-clay-red/50 via-rust-red to-clay-red/50">
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="text-5xl text-clay-red">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-warm-white mb-2 font-serif">
+                    <%= stats.overdueBooks %>
+                </h3>
+                <p class="text-parchment font-medium tracking-wide uppercase text-sm">Overdue Returns</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Librarian's Quick Actions -->
+<div class="mb-16">
+    <h2
+        class="text-3xl font-bold text-warm-white mt-2 mb-8 text-center font-serif flex items-center justify-center gap-3">
+        <i class="fas fa-quill-pen text-antique-gold"></i>
+        Librarian's Duties
+        <i class="fas fa-quill-pen text-antique-gold"></i>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/books/create"
+            class="group bg-deep-walnut p-8 rounded-xl border-2 border-antique-gold/20 hover:border-antique-gold hover:bg-walnut transition-all duration-300 text-center shadow-book hover:shadow-warm hover:-translate-y-2">
+            <div class="text-5xl text-antique-gold mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-book-medical"></i>
+            </div>
+            <span class="text-parchment font-serif text-lg font-medium block">Add New Volume</span>
+            <p class="text-aged-paper text-sm mt-2">Catalog a new book</p>
+        </a>
+        <a href="/authors/create"
+            class="group bg-deep-walnut p-8 rounded-xl border-2 border-forest-green/20 hover:border-forest-green hover:bg-walnut transition-all duration-300 text-center shadow-book hover:shadow-warm hover:-translate-y-2">
+            <div class="text-5xl text-forest-green mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-user-edit"></i>
+            </div>
+            <span class="text-parchment font-serif text-lg font-medium block">Register Author</span>
+            <p class="text-aged-paper text-sm mt-2">Add new writer</p>
+        </a>
+        <a href="/members/create"
+            class="group bg-deep-walnut p-8 rounded-xl border-2 border-sage-green/20 hover:border-sage-green hover:bg-walnut transition-all duration-300 text-center shadow-book hover:shadow-warm hover:-translate-y-2">
+            <div class="text-5xl text-sage-green mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-address-card"></i>
+            </div>
+            <span class="text-parchment font-serif text-lg font-medium block">New Member</span>
+            <p class="text-aged-paper text-sm mt-2">Register reader</p>
+        </a>
+        <a href="/categories/create"
+            class="group bg-deep-walnut p-8 rounded-xl border-2 border-clay-red/20 hover:border-clay-red hover:bg-walnut transition-all duration-300 text-center shadow-book hover:shadow-warm hover:-translate-y-2">
+            <div class="text-5xl text-clay-red mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-bookmark"></i>
+            </div>
+            <span class="text-parchment font-serif text-lg font-medium block">New Category</span>
+            <p class="text-aged-paper text-sm mt-2">Organize collection</p>
+        </a>
+    </div>
+</div>
+
+<!-- Library Chronicles - Recent Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+    <!-- Recent Transactions Chronicle -->
+    <div class="bg-walnut p-8 rounded-2xl border-2 border-antique-gold/30 shadow-book relative overflow-hidden">
+        <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-antique-gold/50 via-parchment to-antique-gold/50">
+        </div>
+
+        <h2 class="text-2xl font-bold text-warm-white mb-6 font-serif flex items-center gap-3">
+            <i class="fas fa-scroll text-antique-gold"></i>
+            Recent Transactions
+        </h2>
+
+        <% if (recentTransactions.length> 0) { %>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-antique-gold/30">
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Member</th>
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Book</th>
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Issue Date</th>
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Due Date</th>
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-antique-gold/20">
+                        <% recentTransactions.forEach(transaction=> { %>
+                            <tr class="hover:bg-deep-walnut/50 transition-colors duration-200">
+                                <td class="py-3 px-2 text-aged-paper">
+                                    <%= transaction.member_first_name %>
+                                        <%= transaction.member_last_name %>
+                                </td>
+                                <td class="py-3 px-2 text-aged-paper">
+                                    <%= transaction.title %>
+                                </td>
+                                <td class="py-3 px-2 text-aged-paper">
+                                    <%= new Date(transaction.issue_date).toLocaleDateString() %>
+                                </td>
+                                <td class="py-3 px-2 text-aged-paper">
+                                    <%= new Date(transaction.due_date).toLocaleDateString() %>
+                                </td>
+                                <td class="py-3 px-2">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold 
+                                        <%= transaction.status.toLowerCase() === 'issued' ? 'bg-forest-green/20 text-forest-green border border-forest-green/30' : 
+                                            transaction.status.toLowerCase() === 'returned' ? 'bg-sage-green/20 text-sage-green border border-sage-green/30' : 
+                                            'bg-clay-red/20 text-clay-red border border-clay-red/30' %>">
+                                        <%= transaction.status %>
+                                    </span>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <% } else { %>
+                <div class="text-center py-12">
+                    <i class="fas fa-scroll text-4xl text-aged-paper/50 mb-4"></i>
+                    <p class="text-aged-paper italic font-serif">The transaction ledger is empty</p>
+                </div>
+                <% } %>
+    </div>
+
+    <!-- Overdue Books Scroll -->
+    <div class="bg-walnut p-8 rounded-2xl border-2 border-clay-red/30 shadow-book relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-clay-red/50 via-rust-red to-clay-red/50">
+        </div>
+
+        <h2 class="text-2xl font-bold text-warm-white mb-6 font-serif flex items-center gap-3">
+            <i class="fas fa-hourglass-end text-clay-red"></i>
+            Overdue Chronicles
+        </h2>
+
+        <% if (overdueBooks.length> 0) { %>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-clay-red/30">
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Member</th>
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Book</th>
+                            <th class="text-left py-3 px-2 text-parchment font-serif font-semibold">Days Overdue</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-clay-red/20">
+                        <% overdueBooks.forEach(book=> { %>
+                            <tr class="hover:bg-deep-walnut/50 transition-colors duration-200">
+                                <td class="py-3 px-2 text-aged-paper">
+                                    <%= book.member_first_name %>
+                                        <%= book.member_last_name %>
+                                </td>
+                                <td class="py-3 px-2 text-aged-paper">
+                                    <%= book.title %>
+                                </td>
+                                <td class="py-3 px-2">
+                                    <span class="text-rust-red font-bold font-serif">
+                                        <%= book.days_overdue %> days
+                                    </span>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <% } else { %>
+                <div class="text-center py-12">
+                    <i class="fas fa-check-circle text-4xl text-forest-green/50 mb-4"></i>
+                    <p class="text-aged-paper italic font-serif">All books returned on time</p>
+                </div>
+                <% } %>
+    </div>
+</div>
+</div>

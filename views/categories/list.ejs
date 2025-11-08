@@ -1,0 +1,160 @@
+<!-- Literary Classifications Archive -->
+<div class="mb-12">
+    <!-- Elegant Header with Manuscript Style -->
+    <div class="text-center mb-12 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-antique-gold/20 to-transparent h-px top-1/2">
+        </div>
+        <div class="relative bg-charcoal px-8 inline-block">
+            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wider">
+                <i class="fas fa-bookmark text-antique-gold mr-4"></i>
+                Archive Classifications
+                <i class="fas fa-bookmark text-antique-gold ml-4"></i>
+            </h1>
+            <p class="text-parchment text-lg italic">Literary Organization System</p>
+        </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="flex justify-between items-center mb-8">
+        <div class="text-aged-paper font-serif">
+            <i class="fas fa-tags mr-2 text-antique-gold"></i>
+            <span class="text-lg">
+                <%= categories.length %> classifications established
+            </span>
+        </div>
+        <a href="/categories/create"
+            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm">
+            <i class="fas fa-plus"></i>
+            Establish New Classification
+        </a>
+    </div>
+
+    <% if (locals.success) { %>
+        <div class="mb-6 bg-forest-green/20 border border-forest-green/40 rounded-xl p-4 shadow-warm">
+            <div class="flex items-center text-forest-green font-serif">
+                <i class="fas fa-check-circle text-lg mr-3"></i>
+                <span>
+                    <%= success %>
+                </span>
+            </div>
+        </div>
+        <% } %>
+
+            <% if (categories.length> 0) { %>
+                <!-- Elegant Classifications Registry Table -->
+                <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+                    <div
+                        class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-6 py-4 border-b border-antique-gold/30">
+                        <h2 class="text-warm-white font-serif font-bold text-xl flex items-center gap-2">
+                            <i class="fas fa-bookmark text-antique-gold"></i>
+                            Classifications Registry
+                        </h2>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-deep-walnut border-b border-antique-gold/20">
+                                    <th class="text-left py-5 px-6 text-parchment font-serif font-semibold">
+                                        Classification Name</th>
+                                    <th class="text-left py-5 px-4 text-parchment font-serif font-semibold">Organization
+                                        Type</th>
+                                    <th class="text-left py-5 px-4 text-parchment font-serif font-semibold">Volume Count
+                                    </th>
+                                    <th class="text-left py-5 px-4 text-parchment font-serif font-semibold">Description
+                                    </th>
+                                    <th class="text-center py-5 px-4 text-parchment font-serif font-semibold">Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-antique-gold/10">
+                                <% categories.forEach(category=> { %>
+                                    <tr class="hover:bg-deep-walnut/50 transition-all duration-200 group">
+                                        <td class="py-6 px-6">
+                                            <a href="/categories/<%= category.category_id %>"
+                                                class="text-warm-white hover:text-antique-gold font-serif font-medium transition-colors duration-200 flex items-center gap-3 group-hover:translate-x-1">
+                                                <i class="fas fa-bookmark text-antique-gold/60 text-sm"></i>
+                                                <div>
+                                                    <div class="text-lg">
+                                                        <%= category.category_name %>
+                                                    </div>
+                                                    <div class="text-xs text-aged-paper/70">Category #<%=
+                                                            category.category_id %>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td class="py-6 px-4">
+                                            <div class="flex items-center gap-2">
+                                                <% if (category.priority_level>= 4) { %>
+                                                    <span
+                                                        class="px-2 py-1 bg-antique-gold/20 text-antique-gold text-xs rounded font-serif">Primary</span>
+                                                    <% } else if (category.priority_level>= 2) { %>
+                                                        <span
+                                                            class="px-2 py-1 bg-parchment/20 text-parchment text-xs rounded font-serif">Secondary</span>
+                                                        <% } else { %>
+                                                            <span
+                                                                class="px-2 py-1 bg-aged-paper/20 text-aged-paper text-xs rounded font-serif">Reference</span>
+                                                            <% } %>
+                                            </div>
+                                        </td>
+                                        <td class="py-6 px-4">
+                                            <div class="text-aged-paper font-serif">
+                                                <i class="fas fa-books text-antique-gold/60 text-sm mr-1"></i>
+                                                <span class="text-sm">-- volumes</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-6 px-4">
+                                            <div class="text-aged-paper font-serif text-sm max-w-xs truncate">
+                                                <%= category.description || 'No description provided' %>
+                                            </div>
+                                        </td>
+                                        <td class="py-6 px-4">
+                                            <div class="flex items-center justify-center gap-3">
+                                                <a href="/categories/<%= category.category_id %>"
+                                                    class="p-3 bg-sage-green/20 text-sage-green rounded-lg hover:bg-sage-green hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                                                    title="View Classification">
+                                                    <i class="fas fa-eye text-sm"></i>
+                                                </a>
+                                                <a href="/categories/<%= category.category_id %>/edit"
+                                                    class="p-3 bg-antique-gold/20 text-antique-gold rounded-lg hover:bg-antique-gold hover:text-espresso transition-all duration-200 hover:-translate-y-0.5"
+                                                    title="Edit Classification">
+                                                    <i class="fas fa-edit text-sm"></i>
+                                                </a>
+                                                <form method="POST"
+                                                    action="/categories/<%= category.category_id %>/delete"
+                                                    onsubmit="return confirmDelete('Are you certain you wish to remove this classification from the archive?')"
+                                                    class="inline">
+                                                    <button type="submit"
+                                                        class="p-3 bg-clay-red/20 text-clay-red rounded-lg hover:bg-clay-red hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                                                        title="Remove Classification">
+                                                        <i class="fas fa-trash text-sm"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <% } else { %>
+                    <!-- Empty State -->
+                    <div
+                        class="text-center py-16 bg-walnut/20 rounded-2xl border-2 border-dashed border-antique-gold/30">
+                        <div class="mb-6">
+                            <i class="fas fa-bookmark text-6xl text-antique-gold/50"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-warm-white font-serif mb-3">No Classifications Established
+                        </h3>
+                        <p class="text-aged-paper mb-6 font-serif">Begin organizing your literary collection by creating
+                            classification categories.</p>
+                        <a href="/categories/create"
+                            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm">
+                            <i class="fas fa-plus"></i>
+                            Establish First Classification
+                        </a>
+                    </div>
+                    <% } %>
+</div>

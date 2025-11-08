@@ -1,0 +1,117 @@
+<!-- Classification Refinement Form -->
+<div class="mb-12">
+    <!-- Manuscript Header -->
+    <div class="text-center mb-12 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-antique-gold/20 to-transparent h-px top-1/2">
+        </div>
+        <div class="relative bg-charcoal px-8 inline-block">
+            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wider">
+                <i class="fas fa-edit text-antique-gold mr-4"></i>
+                Refine Classification
+                <i class="fas fa-edit text-antique-gold ml-4"></i>
+            </h1>
+            <p class="text-parchment text-lg italic">Updating: <%= category.category_name %>
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="mb-8">
+        <a href="/categories/<%= category.category_id %>"
+            class="inline-flex items-center gap-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
+            <i class="fas fa-arrow-left"></i>
+            <span class="font-serif">Return to Classification</span>
+        </a>
+    </div>
+
+    <% if (locals.error) { %>
+        <div class="bg-clay-red/10 border border-clay-red/30 text-clay-red p-4 rounded-xl mb-8 flex items-center gap-3">
+            <i class="fas fa-exclamation-triangle text-xl"></i>
+            <span class="font-serif">
+                <%= error %>
+            </span>
+        </div>
+        <% } %>
+
+            <!-- Classification Refinement Parchment -->
+            <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+                <div
+                    class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-6 py-4 border-b border-antique-gold/30">
+                    <h2 class="text-warm-white font-serif font-bold text-xl flex items-center gap-2">
+                        <i class="fas fa-scroll text-antique-gold"></i>
+                        Classification Refinement Form
+                    </h2>
+                </div>
+
+                <form method="POST" action="/categories/<%= category.category_id %>/edit" class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Essential Details -->
+                        <div class="space-y-6">
+                            <div>
+                                <label for="category_name"
+                                    class="block text-parchment font-serif font-semibold mb-2 text-sm uppercase tracking-wider">
+                                    <i class="fas fa-bookmark mr-2 text-antique-gold"></i>
+                                    Classification Name *
+                                </label>
+                                <input type="text" id="category_name" name="category_name"
+                                    value="<%= category.category_name %>" required
+                                    class="w-full px-4 py-3 bg-deep-walnut text-warm-white border border-antique-gold/30 rounded-lg focus:border-antique-gold focus:ring-2 focus:ring-antique-gold/20 focus:outline-none transition-all duration-200 font-serif"
+                                    placeholder="Enter classification name">
+                            </div>
+
+                            <div>
+                                <label for="priority_level"
+                                    class="block text-parchment font-serif font-semibold mb-2 text-sm uppercase tracking-wider">
+                                    <i class="fas fa-layer-group mr-2 text-antique-gold"></i>
+                                    Organization Type
+                                </label>
+                                <select id="priority_level" name="priority_level"
+                                    class="w-full px-4 py-3 bg-deep-walnut text-warm-white border border-antique-gold/30 rounded-lg focus:border-antique-gold focus:ring-2 focus:ring-antique-gold/20 focus:outline-none transition-all duration-200 font-serif">
+                                    <option value="1" <%=category.priority_level==1 ? 'selected' : '' %>>Reference
+                                        Classification</option>
+                                    <option value="2" <%=category.priority_level==2 ? 'selected' : '' %>>Secondary
+                                        Classification</option>
+                                    <option value="3" <%=category.priority_level==3 ? 'selected' : '' %>>Secondary
+                                        Classification</option>
+                                    <option value="4" <%=category.priority_level==4 ? 'selected' : '' %>>Primary
+                                        Classification</option>
+                                    <option value="5" <%=category.priority_level==5 ? 'selected' : '' %>>Primary
+                                        Classification</option>
+                                </select>
+                                <p class="text-parchment/70 text-xs mt-1 font-serif">Choose the organizational
+                                    importance of this classification</p>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="space-y-6">
+                            <div>
+                                <label for="description"
+                                    class="block text-parchment font-serif font-semibold mb-2 text-sm uppercase tracking-wider">
+                                    <i class="fas fa-scroll mr-2 text-antique-gold"></i>
+                                    Description
+                                </label>
+                                <textarea id="description" name="description" rows="5"
+                                    class="w-full px-4 py-3 bg-deep-walnut text-warm-white border border-antique-gold/30 rounded-lg focus:border-antique-gold focus:ring-2 focus:ring-antique-gold/20 focus:outline-none transition-all duration-200 font-serif resize-none"
+                                    placeholder="Describe this classification category..."><%= category.description || '' %></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div
+                        class="flex flex-col sm:flex-row gap-4 justify-center mt-8 pt-6 border-t border-antique-gold/20">
+                        <button type="submit"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+                            <i class="fas fa-save"></i>
+                            Update Classification
+                        </button>
+                        <a href="/categories/<%= category.category_id %>"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-deep-walnut text-aged-paper rounded-xl font-bold font-serif hover:bg-walnut transition-all duration-300 shadow-warm hover:-translate-y-1">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+</div>

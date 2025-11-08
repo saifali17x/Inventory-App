@@ -1,0 +1,184 @@
+<!-- Literary Revision Form -->
+<div class="mb-12">
+    <!-- Manuscript Header -->
+    <div class="text-center mb-12">
+        <div class="bg-charcoal px-8 inline-block">
+            <h1 class="text-warm-white text-3xl font-bold mb-4 font-serif tracking-wider">
+                <i class="fas fa-quill-pen text-antique-gold mr-4"></i>
+                Revise: <%= book.title %>
+                    <i class="fas fa-quill-pen text-antique-gold ml-4"></i>
+            </h1>
+            <p class="text-parchment text-lg italic">Amend the registry entry</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="mb-8">
+        <a href="/books/<%= book.book_id %>"
+            class="inline-flex items-center gap-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
+            <i class="fas fa-arrow-left"></i>
+            <span class="font-serif">Return to Volume</span>
+        </a>
+    </div>
+
+    <% if (locals.error) { %>
+        <div class="bg-clay-red/10 border border-clay-red/30 text-clay-red p-4 rounded-xl mb-8 flex items-center gap-3">
+            <i class="fas fa-scroll text-xl"></i>
+            <span class="font-serif">
+                <%= error %>
+            </span>
+        </div>
+        <% } %>
+
+            <!-- Revision Parchment -->
+            <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+                <div
+                    class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-6 py-4 border-b border-antique-gold/30">
+                    <h2 class="text-warm-white font-serif font-bold text-xl flex items-center gap-2">
+                        <i class="fas fa-scroll text-antique-gold"></i>
+                        Amendment Form
+                    </h2>
+                </div>
+
+                <form method="POST" action="/books/<%= book.book_id %>/edit" class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Essential Details -->
+                        <div class="space-y-6">
+                            <div>
+                                <label for="title"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Work Title <span class="text-clay-red">*</span>
+                                </label>
+                                <input type="text" id="title" name="title" value="<%= book.title %>" required
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <div>
+                                <label for="isbn"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Registry Number (ISBN)
+                                </label>
+                                <input type="text" id="isbn" name="isbn" value="<%= book.isbn || '' %>"
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <div>
+                                <label for="author_id"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Scribe <span class="text-clay-red">*</span>
+                                </label>
+                                <select id="author_id" name="author_id" required
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    <% authors.forEach(author=> { %>
+                                        <option value="<%= author.author_id %>" <%=(book.author_id==author.author_id)
+                                            ? 'selected' : '' %>>
+                                            <%= author.first_name %>
+                                                <%= author.last_name %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="publisher_id"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Publishing House <span class="text-clay-red">*</span>
+                                </label>
+                                <select id="publisher_id" name="publisher_id" required
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    <% publishers.forEach(publisher=> { %>
+                                        <option value="<%= publisher.publisher_id %>"
+                                            <%=(book.publisher_id==publisher.publisher_id) ? 'selected' : '' %>>
+                                            <%= publisher.publisher_name %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="category_id"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Literary Classification <span class="text-clay-red">*</span>
+                                </label>
+                                <select id="category_id" name="category_id" required
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    <% categories.forEach(category=> { %>
+                                        <option value="<%= category.category_id %>"
+                                            <%=(book.category_id==category.category_id) ? 'selected' : '' %>>
+                                            <%= category.category_name %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Publication Details -->
+                        <div class="space-y-6">
+                            <div>
+                                <label for="publication_year"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Year of Creation
+                                </label>
+                                <input type="number" id="publication_year" name="publication_year"
+                                    value="<%= book.publication_year || '' %>" min="1000" max="2024"
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <div>
+                                <label for="pages"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Manuscript Length
+                                </label>
+                                <input type="number" id="pages" name="pages" value="<%= book.pages || '' %>" min="1"
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <div>
+                                <label for="price"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Acquisition Cost (Rs.)
+                                </label>
+                                <input type="number" id="price" name="price" value="<%= book.price || '' %>" step="0.01"
+                                    min="0"
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <div>
+                                <label for="total_copies"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Archive Copies <span class="text-clay-red">*</span>
+                                </label>
+                                <input type="number" id="total_copies" name="total_copies"
+                                    value="<%= book.total_copies %>" min="1" required
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <div>
+                                <label for="copies_available"
+                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    Available for Loan <span class="text-clay-red">*</span>
+                                </label>
+                                <input type="number" id="copies_available" name="copies_available"
+                                    value="<%= book.copies_available %>" min="0" required
+                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amendment Actions -->
+                    <div
+                        class="flex flex-col sm:flex-row gap-4 justify-center pt-8 border-t border-antique-gold/20 mt-8">
+                        <button type="submit"
+                            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+                            <i class="fas fa-scroll"></i>
+                            Save Revisions
+                        </button>
+                        <a href="/books/<%= book.book_id %>"
+                            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-deep-walnut text-aged-paper border border-antique-gold/30 rounded-xl font-serif hover:bg-walnut transition-all duration-200">
+                            <i class="fas fa-times"></i>
+                            Discard Changes
+                        </a>
+                    </div>
+                </form>
+            </div>
+</div>
