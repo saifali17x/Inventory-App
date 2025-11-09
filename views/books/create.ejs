@@ -1,28 +1,30 @@
 <!-- Literary Inscription Form -->
-<div class="mb-12">
+<div class="mb-8 lg:mb-12">
     <!-- Manuscript Header -->
-    <div class="text-center mb-12">
-        <div class="bg-charcoal px-8 inline-block">
-            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wider">
-                <i class="fas fa-feather-alt text-antique-gold mr-4"></i>
+    <div class="text-center mb-8 lg:mb-8 lg:mb-12 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-antique-gold/20 to-transparent h-px top-1/2">
+        </div>
+        <div class="relative bg-charcoal px-4 sm:px-6 lg:px-8 inline-block">
+            <h1 class="text-warm-white text-2xl sm:text-3xl lg:text-2xl lg:text-4xl font-bold mb-2 lg:mb-4 font-serif tracking-wider">
+                <i class="fas fa-feather-alt text-antique-gold mr-2 lg:mr-4"></i>
                 Inscribe New Volume
-                <i class="fas fa-feather-alt text-antique-gold ml-4"></i>
+                <i class="fas fa-feather-alt text-antique-gold ml-2 lg:ml-4"></i>
             </h1>
-            <p class="text-parchment text-lg italic">Add a literary treasure to the archives</p>
+            <p class="text-parchment text-xs lg:text-sm sm:text-base lg:text-base lg:text-lg italic">Add a literary treasure to the archives</p>
         </div>
     </div>
 
     <!-- Navigation -->
     <div class="mb-8">
         <a href="/books"
-            class="inline-flex items-center gap-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
             <i class="fas fa-arrow-left"></i>
             <span class="font-serif">Return to Collection</span>
         </a>
     </div>
 
     <% if (locals.error) { %>
-        <div class="bg-clay-red/10 border border-clay-red/30 text-clay-red p-4 rounded-xl mb-8 flex items-center gap-3">
+        <div class="bg-clay-red/10 border border-clay-red/30 text-clay-red p-4 rounded-lg lg:rounded-xl mb-8 flex items-center gap-1 lg:gap-2 lg:p-3">
             <i class="fas fa-scroll text-xl"></i>
             <span class="font-serif">
                 <%= error %>
@@ -31,45 +33,45 @@
         <% } %>
 
             <!-- Inscription Parchment -->
-            <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+            <div class="bg-walnut rounded-xl lg:rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
                 <div
-                    class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-6 py-4 border-b border-antique-gold/30">
+                    class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-4 lg:px-4 lg:px-6 py-2 lg:py-3 lg:py-4 border-b border-antique-gold/30">
                     <h2 class="text-warm-white font-serif font-bold text-xl flex items-center gap-2">
                         <i class="fas fa-scroll text-antique-gold"></i>
                         Volume Registry Form
                     </h2>
                 </div>
 
-                <form method="POST" action="/books/create" class="p-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form method="POST" action="/books/create" class="p-4 sm:p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-2 lg:p-3 sm:gap-4 lg:gap-6">
                         <!-- Essential Details -->
                         <div class="space-y-6">
                             <div>
                                 <label for="title"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Work Title <span class="text-clay-red">*</span>
                                 </label>
                                 <input type="text" id="title" name="title" value="<%= locals.formData?.title || '' %>"
                                     required
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                             </div>
 
                             <div>
                                 <label for="isbn"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Registry Number (ISBN)
                                 </label>
                                 <input type="text" id="isbn" name="isbn" value="<%= locals.formData?.isbn || '' %>"
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                             </div>
 
                             <div>
                                 <label for="author_id"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Scribe <span class="text-clay-red">*</span>
                                 </label>
                                 <select id="author_id" name="author_id" required
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                                     <option value="">Choose the author</option>
                                     <% authors.forEach(author=> { %>
                                         <option value="<%= author.author_id %>"
@@ -83,11 +85,11 @@
 
                             <div>
                                 <label for="publisher_id"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Publishing House <span class="text-clay-red">*</span>
                                 </label>
                                 <select id="publisher_id" name="publisher_id" required
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                                     <option value="">Choose the publisher</option>
                                     <% publishers.forEach(publisher=> { %>
                                         <option value="<%= publisher.publisher_id %>"
@@ -101,11 +103,11 @@
 
                             <div>
                                 <label for="category_id"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Literary Classification <span class="text-clay-red">*</span>
                                 </label>
                                 <select id="category_id" name="category_id" required
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                                     <option value="">Choose the category</option>
                                     <% categories.forEach(category=> { %>
                                         <option value="<%= category.category_id %>"
@@ -122,52 +124,52 @@
                         <div class="space-y-6">
                             <div>
                                 <label for="publication_year"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Year of Creation
                                 </label>
                                 <input type="number" id="publication_year" name="publication_year"
                                     value="<%= locals.formData?.publication_year || '' %>" min="1000" max="2024"
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                             </div>
 
                             <div>
                                 <label for="pages"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Manuscript Length
                                 </label>
                                 <input type="number" id="pages" name="pages" value="<%= locals.formData?.pages || '' %>"
                                     min="1"
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                             </div>
 
                             <div>
                                 <label for="price"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Acquisition Cost (Rs.)
                                 </label>
                                 <input type="number" id="price" name="price" value="<%= locals.formData?.price || '' %>"
                                     step="0.01" min="0"
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                             </div>
 
                             <div>
                                 <label for="total_copies"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Archive Copies <span class="text-clay-red">*</span>
                                 </label>
                                 <input type="number" id="total_copies" name="total_copies"
                                     value="<%= locals.formData?.total_copies || '1' %>" min="1" required
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                             </div>
 
                             <div>
                                 <label for="copies_available"
-                                    class="block text-parchment font-serif mb-2 text-sm uppercase tracking-wider">
+                                    class="block text-parchment font-serif mb-2 text-xs lg:text-sm uppercase tracking-wider">
                                     Available for Loan <span class="text-clay-red">*</span>
                                 </label>
                                 <input type="number" id="copies_available" name="copies_available"
                                     value="<%= locals.formData?.copies_available || '1' %>" min="0" required
-                                    class="w-full px-4 py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
+                                    class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-deep-walnut border border-antique-gold/30 rounded-lg text-warm-white font-serif focus:border-antique-gold focus:ring-1 focus:ring-antique-gold/30 focus:outline-none transition-all duration-200">
                             </div>
                         </div>
                     </div>
@@ -176,12 +178,12 @@
                     <div
                         class="flex flex-col sm:flex-row gap-4 justify-center pt-8 border-t border-antique-gold/20 mt-8">
                         <button type="submit"
-                            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+                            class="inline-flex items-center justify-center gap-1 lg:gap-2 lg:p-3 px-6 lg:px-8 py-3 lg:py-4 bg-antique-gold text-espresso rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
                             <i class="fas fa-scroll"></i>
                             Inscribe in Archives
                         </button>
                         <a href="/books"
-                            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-deep-walnut text-aged-paper border border-antique-gold/30 rounded-xl font-serif hover:bg-walnut transition-all duration-200">
+                            class="inline-flex items-center justify-center gap-1 lg:gap-2 lg:p-3 px-6 lg:px-8 py-3 lg:py-4 bg-deep-walnut text-aged-paper border border-antique-gold/30 rounded-lg lg:rounded-xl font-serif hover:bg-walnut transition-all duration-200">
                             <i class="fas fa-times"></i>
                             Abandon Inscription
                         </a>

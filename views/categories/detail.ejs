@@ -3,30 +3,30 @@
     <!-- Navigation & Actions -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <a href="/categories"
-            class="inline-flex items-center gap-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
             <i class="fas fa-arrow-left"></i>
             <span class="font-serif">Return to Classifications</span>
         </a>
         <a href="/categories/<%= category.category_id %>/edit"
-            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 lg:px-6 py-2 lg:py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
             <i class="fas fa-edit"></i>
             Refine Classification
         </a>
     </div>
 
     <!-- Manuscript-Style Classification Details -->
-    <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+    <div class="bg-walnut rounded-xl lg:rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
         <!-- Elegant Title Header -->
         <div
             class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-8 py-12 border-b border-antique-gold/30 text-center relative">
             <div
                 class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-antique-gold/50 via-parchment to-antique-gold/50">
             </div>
-            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wide">
+            <h1 class="text-warm-white text-2xl sm:text-3xl lg:text-2xl lg:text-4xl font-bold mb-2 lg:mb-4 font-serif tracking-wide">
                 <%= category.category_name %>
             </h1>
             <% if (category.description) { %>
-                <p class="text-parchment/80 text-sm font-serif italic tracking-wide">
+                <p class="text-parchment/80 text-xs lg:text-sm font-serif italic tracking-wide">
                     <%= category.description %>
                 </p>
                 <% } %>
@@ -36,46 +36,46 @@
         </div>
 
         <!-- Information Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:p-6 lg:p-8 p-4 sm:p-6 lg:p-8">
             <!-- Classification Details -->
-            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-antique-gold/20">
-                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+            <div class="bg-deep-walnut/50 p-6 rounded-lg lg:rounded-xl border border-antique-gold/20">
+                <h3 class="text-warm-white text-base lg:text-lg lg:text-xl font-bold mb-6 font-serif flex items-center gap-2">
                     <i class="fas fa-bookmark text-antique-gold"></i>
                     Classification Details
                 </h3>
                 <div class="space-y-4">
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Classification
+                        <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Classification
                             Name</label>
-                        <span class="text-warm-white font-serif text-lg">
+                        <span class="text-warm-white font-serif text-base lg:text-lg">
                             <%= category.category_name %>
                         </span>
                     </div>
 
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Organization
+                        <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Organization
                             Type</label>
                         <div class="flex items-center gap-2">
                             <% if (category.priority_level>= 4) { %>
                                 <span
-                                    class="px-3 py-1 bg-antique-gold/20 text-antique-gold text-sm rounded-full font-serif">Primary
+                                    class="px-3 py-1 bg-antique-gold/20 text-antique-gold text-xs lg:text-sm rounded-full font-serif">Primary
                                     Classification</span>
                                 <% } else if (category.priority_level>= 2) { %>
                                     <span
-                                        class="px-3 py-1 bg-parchment/20 text-parchment text-sm rounded-full font-serif">Secondary
+                                        class="px-3 py-1 bg-parchment/20 text-parchment text-xs lg:text-sm rounded-full font-serif">Secondary
                                         Classification</span>
                                     <% } else { %>
                                         <span
-                                            class="px-3 py-1 bg-aged-paper/20 text-aged-paper text-sm rounded-full font-serif">Reference
+                                            class="px-3 py-1 bg-aged-paper/20 text-aged-paper text-xs lg:text-sm rounded-full font-serif">Reference
                                             Classification</span>
                                         <% } %>
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Classification
+                        <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Classification
                             ID</label>
-                        <span class="text-warm-white font-serif text-lg">
+                        <span class="text-warm-white font-serif text-base lg:text-lg">
                             #<%= category.category_id %>
                         </span>
                     </div>
@@ -83,7 +83,7 @@
                     <% if (category.description) { %>
                         <div class="flex flex-col gap-1">
                             <label
-                                class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Description</label>
+                                class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Description</label>
                             <span class="text-warm-white font-serif">
                                 <%= category.description %>
                             </span>
@@ -93,11 +93,11 @@
             </div>
 
             <!-- Volumes in Classification -->
-            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-antique-gold/20">
-                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+            <div class="bg-deep-walnut/50 p-6 rounded-lg lg:rounded-xl border border-antique-gold/20">
+                <h3 class="text-warm-white text-base lg:text-lg lg:text-xl font-bold mb-6 font-serif flex items-center gap-2">
                     <i class="fas fa-books text-antique-gold"></i>
                     Classified Volumes
-                    <span class="text-parchment/60 text-sm ml-2">(<%= books.length %>)</span>
+                    <span class="text-parchment/60 text-xs lg:text-sm ml-2">(<%= books.length %>)</span>
                 </h3>
                 <% if (books.length> 0) { %>
                     <div class="space-y-3 max-h-96 overflow-y-auto">
@@ -110,7 +110,7 @@
                                         <%= book.title %>
                                     </a>
                                 </h4>
-                                <p class="text-parchment/70 text-sm font-serif">
+                                <p class="text-parchment/70 text-xs lg:text-sm font-serif">
                                     by <%= book.first_name %>
                                         <%= book.last_name %>
                                             <% if (book.publisher_name) { %>
@@ -125,7 +125,7 @@
                     </div>
                     <% } else { %>
                         <div class="text-center py-8">
-                            <i class="fas fa-book-open text-4xl text-antique-gold/30 mb-4"></i>
+                            <i class="fas fa-book-open text-2xl lg:text-4xl text-antique-gold/30 mb-4"></i>
                             <p class="text-parchment/70 font-serif">No volumes classified under this category yet.</p>
                         </div>
                         <% } %>
@@ -137,7 +137,7 @@
             class="p-6 bg-gradient-to-r from-antique-gold/10 via-parchment/5 to-antique-gold/10 border-t border-antique-gold/20">
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="/categories/<%= category.category_id %>/edit"
-                    class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+                    class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 lg:px-6 py-2 lg:py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
                     <i class="fas fa-edit"></i>
                     Refine Classification
                 </a>
@@ -145,7 +145,7 @@
                     onsubmit="return confirmDelete('Are you sure you want to remove this classification? This action cannot be undone.')"
                     class="inline">
                     <button type="submit"
-                        class="inline-flex items-center gap-3 px-6 py-3 bg-red-900 text-red-100 rounded-xl font-bold font-serif hover:bg-red-800 transition-all duration-300 shadow-warm hover:-translate-y-1">
+                        class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 lg:px-6 py-2 lg:py-3 bg-red-900 text-red-100 rounded-lg lg:rounded-xl font-bold font-serif hover:bg-red-800 transition-all duration-300 shadow-warm hover:-translate-y-1">
                         <i class="fas fa-trash"></i>
                         Remove Classification
                     </button>

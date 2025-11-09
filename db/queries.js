@@ -102,6 +102,21 @@ export const updateBook = async (id, bookData) => {
 };
 
 export const deleteBook = async (id) => {
+  // Get book details for confirmation message
+  const { rows: bookRows } = await pool.query(
+    `SELECT b.title, a.first_name, a.last_name
+     FROM Books b
+     LEFT JOIN Authors a ON b.author_id = a.author_id
+     WHERE b.book_id = $1`,
+    [id]
+  );
+
+  if (bookRows.length === 0) {
+    throw new Error("Book not found.");
+  }
+
+  // With CASCADE, all transactions will be automatically deleted
+  // This allows for complete cleanup when removing books
   await pool.query("DELETE FROM Books WHERE book_id = $1", [id]);
 };
 
@@ -165,6 +180,44 @@ export const updateAuthor = async (id, authorData) => {
 };
 
 export const deleteAuthor = async (id) => {
+  // Get author details for better error message
+  const { rows: authorDetails } = await pool.query(
+    "SELECT first_name, last_name FROM Authors WHERE author_id = $1",
+    [id]
+  );
+
+  if (authorDetails.length === 0) {
+    throw new Error("Author not found.");
+  }
+
+  const authorName = `${authorDetails[0].first_name} ${authorDetails[0].last_name}`;
+
+  // Check if author has books that appear in transactions (overdue or recent)
+  const { rows: transactionBooks } = await pool.query(
+    `
+    SELECT DISTINCT b.title, t.status, t.issue_date, t.return_date
+    FROM Books b 
+    JOIN Transactions t ON b.book_id = t.book_id 
+    WHERE b.author_id = $1 
+    AND (
+      t.status IN ('Issued', 'Overdue') 
+      OR t.return_date >= CURRENT_DATE - INTERVAL '30 days'
+    )
+    LIMIT 3
+  `,
+    [id]
+  );
+
+  if (transactionBooks.length > 0) {
+    const bookTitles = transactionBooks
+      .map((book) => `"${book.title}"`)
+      .join(", ");
+    throw new Error(
+      `Cannot delete author ${authorName}. They have books (${bookTitles}) that appear in recent or active transactions. Please wait for all transactions to be completed and settled.`
+    );
+  }
+
+  // If no transaction conflicts, proceed with deletion (will cascade to books)
   await pool.query("DELETE FROM Authors WHERE author_id = $1", [id]);
 };
 
@@ -228,6 +281,17 @@ export const updateCategory = async (id, categoryData) => {
 };
 
 export const deleteCategory = async (id) => {
+  // Get category details for confirmation
+  const { rows: categoryRows } = await pool.query(
+    "SELECT category_name FROM Categories WHERE category_id = $1",
+    [id]
+  );
+
+  if (categoryRows.length === 0) {
+    throw new Error("Category not found.");
+  }
+
+  // With CASCADE, all books in this category (and their transactions) will be automatically deleted
   await pool.query("DELETE FROM Categories WHERE category_id = $1", [id]);
 };
 
@@ -362,6 +426,17 @@ export const updateMember = async (id, memberData) => {
 };
 
 export const deleteMember = async (id) => {
+  // Get member details for confirmation
+  const { rows: memberRows } = await pool.query(
+    "SELECT first_name, last_name FROM Members WHERE member_id = $1",
+    [id]
+  );
+
+  if (memberRows.length === 0) {
+    throw new Error("Member not found.");
+  }
+
+  // With CASCADE, all member transactions will be automatically deleted
   await pool.query("DELETE FROM Members WHERE member_id = $1", [id]);
 };
 

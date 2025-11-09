@@ -3,30 +3,30 @@
     <!-- Navigation & Actions -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <a href="/books"
-            class="inline-flex items-center gap-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
             <i class="fas fa-arrow-left"></i>
             <span class="font-serif">Return to Collection</span>
         </a>
         <a href="/books/<%= book.book_id %>/edit"
-            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 lg:px-6 py-2 lg:py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
             <i class="fas fa-quill-pen"></i>
             Revise Entry
         </a>
     </div>
 
     <!-- Manuscript-Style Book Details -->
-    <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+    <div class="bg-walnut rounded-xl lg:rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
         <!-- Elegant Title Header -->
         <div
             class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-8 py-12 border-b border-antique-gold/30 text-center relative">
             <div
                 class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-antique-gold/50 via-parchment to-antique-gold/50">
             </div>
-            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wide">
+            <h1 class="text-warm-white text-2xl sm:text-3xl lg:text-2xl lg:text-4xl font-bold mb-2 lg:mb-4 font-serif tracking-wide">
                 <%= book.title %>
             </h1>
             <% if (book.isbn) { %>
-                <p class="text-parchment/80 text-sm font-serif italic tracking-widest">
+                <p class="text-parchment/80 text-xs lg:text-sm font-serif italic tracking-widest">
                     Registry No: <%= book.isbn %>
                 </p>
                 <% } %>
@@ -36,39 +36,39 @@
         </div>
 
         <!-- Information Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:p-6 lg:p-8 p-4 sm:p-6 lg:p-8">
             <!-- Literary Details -->
-            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-antique-gold/20">
-                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+            <div class="bg-deep-walnut/50 p-6 rounded-lg lg:rounded-xl border border-antique-gold/20">
+                <h3 class="text-warm-white text-base lg:text-lg lg:text-xl font-bold mb-6 font-serif flex items-center gap-2">
                     <i class="fas fa-scroll text-antique-gold"></i>
                     Literary Details
                 </h3>
                 <div class="space-y-4">
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Author</label>
-                        <span class="text-warm-white font-serif text-lg">
+                        <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Author</label>
+                        <span class="text-warm-white font-serif text-base lg:text-lg">
                             <%= book.first_name %>
                                 <%= book.last_name %>
                         </span>
                     </div>
 
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Category</label>
+                        <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Category</label>
                         <span
-                            class="inline-block px-4 py-2 rounded-full text-sm font-semibold bg-forest-green/20 text-forest-green border border-forest-green/30 w-fit">
+                            class="inline-block px-4 py-2 rounded-full text-xs lg:text-sm font-semibold bg-forest-green/20 text-forest-green border border-forest-green/30 w-fit">
                             <%= book.category_name %>
                         </span>
                     </div>
 
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Publisher</label>
+                        <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Publisher</label>
                         <span class="text-aged-paper font-serif">
                             <%= book.publisher_name %>
                         </span>
                     </div>
 
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Publication
+                        <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Publication
                             Year</label>
                         <span class="text-aged-paper font-serif">
                             <%= book.publication_year %>
@@ -77,7 +77,7 @@
 
                     <% if (book.pages) { %>
                         <div class="flex flex-col gap-1">
-                            <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Pages</label>
+                            <label class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Pages</label>
                             <span class="text-aged-paper font-serif">
                                 <%= book.pages %> pages
                             </span>
@@ -87,7 +87,7 @@
                             <% if (book.price) { %>
                                 <div class="flex flex-col gap-1">
                                     <label
-                                        class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Value</label>
+                                        class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Value</label>
                                     <span class="text-antique-gold font-serif font-bold">
                                         Rs. <%= book.price %>
                                     </span>
@@ -97,22 +97,22 @@
             </div>
 
             <!-- Archive Status -->
-            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-sage-green/20">
-                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+            <div class="bg-deep-walnut/50 p-6 rounded-lg lg:rounded-xl border border-sage-green/20">
+                <h3 class="text-warm-white text-base lg:text-lg lg:text-xl font-bold mb-6 font-serif flex items-center gap-2">
                     <i class="fas fa-archive text-sage-green"></i>
                     Archive Status
                 </h3>
                 <div class="space-y-6">
                     <div class="text-center">
-                        <div class="text-4xl font-bold text-warm-white mb-2 font-serif">
+                        <div class="text-2xl lg:text-4xl font-bold text-warm-white mb-2 font-serif">
                             <%= book.copies_available %>/<%= book.total_copies %>
                         </div>
-                        <p class="text-parchment text-sm font-serif uppercase tracking-wider">Available Copies</p>
+                        <p class="text-parchment text-xs lg:text-sm font-serif uppercase tracking-wider">Available Copies</p>
                     </div>
 
                     <div class="grid grid-cols-3 gap-4 text-center">
                         <div class="bg-sage-green/10 p-4 rounded-lg border border-sage-green/30">
-                            <div class="text-2xl font-bold text-sage-green mb-1 font-serif">
+                            <div class="text-base lg:text-lg lg:text-2xl font-bold text-sage-green mb-1 font-serif">
                                 <%= book.total_copies %>
                             </div>
                             <p class="text-parchment text-xs font-serif">Total</p>
@@ -121,14 +121,14 @@
                         <div
                             class="bg-<%= book.copies_available > 0 ? 'forest-green' : 'clay-red' %>/10 p-4 rounded-lg border border-<%= book.copies_available > 0 ? 'forest-green' : 'clay-red' %>/30">
                             <div
-                                class="text-2xl font-bold text-<%= book.copies_available > 0 ? 'forest-green' : 'clay-red' %> mb-1 font-serif">
+                                class="text-base lg:text-lg lg:text-2xl font-bold text-<%= book.copies_available > 0 ? 'forest-green' : 'clay-red' %> mb-1 font-serif">
                                 <%= book.copies_available %>
                             </div>
                             <p class="text-parchment text-xs font-serif">Available</p>
                         </div>
 
                         <div class="bg-antique-gold/10 p-4 rounded-lg border border-antique-gold/30">
-                            <div class="text-2xl font-bold text-antique-gold mb-1 font-serif">
+                            <div class="text-base lg:text-lg lg:text-2xl font-bold text-antique-gold mb-1 font-serif">
                                 <%= book.total_copies - book.copies_available %>
                             </div>
                             <p class="text-parchment text-xs font-serif">On Loan</p>
@@ -137,7 +137,7 @@
 
                     <div class="text-center">
                         <span
-                            class="px-4 py-2 rounded-full text-sm font-bold <%= book.copies_available > 0 ? 'bg-forest-green/20 text-forest-green border border-forest-green/30' : 'bg-clay-red/20 text-clay-red border border-clay-red/30' %>">
+                            class="px-4 py-2 rounded-full text-xs lg:text-sm font-bold <%= book.copies_available > 0 ? 'bg-forest-green/20 text-forest-green border border-forest-green/30' : 'bg-clay-red/20 text-clay-red border border-clay-red/30' %>">
                             <%= book.copies_available> 0 ? 'Available for Checkout' : 'Currently Unavailable' %>
                         </span>
                     </div>
@@ -149,7 +149,7 @@
         <div class="px-8 py-6 bg-gradient-to-r from-deep-walnut/30 to-transparent border-t border-antique-gold/20">
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="/books/<%= book.book_id %>/edit"
-                    class="inline-flex items-center justify-center gap-3 px-8 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+                    class="inline-flex items-center justify-center gap-1 lg:gap-2 lg:p-3 px-8 py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
                     <i class="fas fa-quill-pen"></i>
                     Revise Entry
                 </a>
@@ -157,7 +157,7 @@
                     onsubmit="return confirmDelete('Are you certain you wish to remove this volume from the archives? This action cannot be undone.')"
                     class="inline">
                     <button type="submit"
-                        class="inline-flex items-center justify-center gap-3 px-8 py-3 bg-clay-red/20 text-clay-red border-2 border-clay-red/40 rounded-xl font-bold font-serif hover:bg-clay-red hover:text-white transition-all duration-300 hover:-translate-y-1">
+                        class="inline-flex items-center justify-center gap-1 lg:gap-2 lg:p-3 px-8 py-3 bg-clay-red/20 text-clay-red border-2 border-clay-red/40 rounded-lg lg:rounded-xl font-bold font-serif hover:bg-clay-red hover:text-white transition-all duration-300 hover:-translate-y-1">
                         <i class="fas fa-fire"></i>
                         Remove from Archives
                     </button>

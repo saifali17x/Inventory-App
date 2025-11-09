@@ -1,122 +1,155 @@
 <!-- Literary Scribes Archive -->
-<div class="mb-12">
+<div class="mb-8 lg:mb-8 lg:mb-12">
     <!-- Elegant Header with Manuscript Style -->
-    <div class="text-center mb-12 relative">
+    <div class="text-center mb-8 lg:mb-8 lg:mb-8 lg:mb-12 relative">
         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-antique-gold/20 to-transparent h-px top-1/2">
         </div>
-        <div class="relative bg-charcoal px-8 inline-block">
-            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wider">
-                <i class="fas fa-user-edit text-antique-gold mr-4"></i>
-                Hall of Scribes
-                <i class="fas fa-user-edit text-antique-gold ml-4"></i>
+        <div class="relative bg-charcoal px-4 sm:px-6 lg:px-4 sm:px-6 lg:px-8 inline-block">
+            <h1
+                class="text-warm-white text-2xl sm:text-3xl lg:text-2xl lg:text-4xl font-bold mb-2 lg:mb-4 font-serif tracking-wider">
+                <i
+                    class="fas fa-user-edit text-antique-gold mr-2 lg:mr-2 lg:mr-4 text-base lg:text-lg sm:text-xl lg:text-2xl"></i>
+                <span class="hidden sm:inline">Hall of Scribes</span>
+                <span class="sm:hidden">Authors</span>
+                <i
+                    class="fas fa-user-edit text-antique-gold ml-2 lg:ml-2 lg:ml-4 text-base lg:text-lg sm:text-xl lg:text-2xl"></i>
             </h1>
-            <p class="text-parchment text-lg italic">Masters of the Written Word</p>
+            <p
+                class="text-parchment text-xs lg:text-sm sm:text-base lg:text-xs lg:text-sm sm:text-base lg:text-base lg:text-lg italic">
+                <span class="hidden sm:inline">Masters of the Written Word</span>
+                <span class="sm:hidden">Writers</span>
+            </p>
         </div>
     </div>
 
     <!-- Action Bar -->
-    <div class="flex justify-between items-center mb-8">
-        <div class="text-aged-paper font-serif">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 lg:mb-8">
+        <div class="text-aged-paper font-serif text-center sm:text-left">
             <i class="fas fa-users mr-2 text-antique-gold"></i>
-            <span class="text-lg">
-                <%= authors.length %> scribes in registry
+            <span class="text-base lg:text-base lg:text-lg">
+                <%= authors.length %>
+                    <span class="hidden sm:inline">scribes in registry</span>
+                    <span class="sm:hidden">authors</span>
             </span>
         </div>
         <a href="/authors/create"
-            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 lg:px-6 py-2 lg:py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-xs lg:text-sm lg:text-base">
             <i class="fas fa-user-plus"></i>
-            Register New Scribe
+            <span class="hidden sm:inline">Register New Scribe</span>
+            <span class="sm:hidden">Add Author</span>
         </a>
     </div>
 
     <% if (authors.length> 0) { %>
         <!-- Elegant Scribes Registry Table -->
-        <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+        <div
+            class="bg-walnut rounded-lg lg:rounded-xl lg:rounded-xl lg:rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
             <div
-                class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-6 py-4 border-b border-antique-gold/30">
-                <h2 class="text-warm-white font-serif font-bold text-xl flex items-center gap-2">
+                class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-4 lg:px-4 lg:px-6 py-2 lg:py-3 lg:py-4 border-b border-antique-gold/30">
+                <h2
+                    class="text-warm-white font-serif font-bold text-base lg:text-lg lg:text-xl flex items-center gap-2">
                     <i class="fas fa-user-edit text-antique-gold"></i>
-                    Scribes Registry
+                    <span class="hidden sm:inline">Scribes Registry</span>
+                    <span class="sm:hidden">Authors</span>
                 </h2>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto -mx-2 lg:mx-0">
                 <table class="w-full">
                     <thead>
                         <tr class="bg-deep-walnut border-b border-antique-gold/20">
-                            <th class="text-left py-5 px-6 text-parchment font-serif font-semibold">Scribe Name</th>
-                            <th class="text-left py-5 px-4 text-parchment font-serif font-semibold">Land of Origin</th>
-                            <th class="text-left py-5 px-4 text-parchment font-serif font-semibold">Year of Birth</th>
-                            <th class="text-left py-5 px-4 text-parchment font-serif font-semibold">Correspondence</th>
-                            <th class="text-center py-5 px-4 text-parchment font-serif font-semibold">Actions</th>
+                            <th
+                                class="text-left py-3 lg:py-5 px-3 lg:px-6 text-parchment font-serif font-semibold text-xs lg:text-sm lg:text-base">
+                                <span class="hidden sm:inline">Scribe Name</span>
+                                <span class="sm:hidden">Name</span>
+                            </th>
+                            <th
+                                class="text-left py-3 lg:py-5 px-2 lg:px-4 text-parchment font-serif font-semibold text-xs lg:text-sm lg:text-base hidden sm:table-cell">
+                                <span class="hidden lg:inline">Land of Origin</span>
+                                <span class="lg:hidden">Country</span>
+                            </th>
+                            <th
+                                class="text-left py-3 lg:py-5 px-2 lg:px-4 text-parchment font-serif font-semibold text-xs lg:text-sm lg:text-base hidden md:table-cell">
+                                <span class="hidden lg:inline">Year of Birth</span>
+                                <span class="lg:hidden">Birth Year</span>
+                            </th>
+                            <th
+                                class="text-left py-3 lg:py-5 px-2 lg:px-4 text-parchment font-serif font-semibold text-xs lg:text-sm lg:text-base hidden lg:table-cell">
+                                Correspondence</th>
+                            <th
+                                class="text-center py-3 lg:py-5 px-2 lg:px-4 text-parchment font-serif font-semibold text-xs lg:text-sm lg:text-base">
+                                Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-antique-gold/10">
                         <% authors.forEach(author=> { %>
                             <tr class="hover:bg-deep-walnut/50 transition-all duration-200 group">
-                                <td class="py-6 px-6">
+                                <td class="py-4 lg:py-6 px-3 lg:px-6">
                                     <a href="/authors/<%= author.author_id %>"
-                                        class="text-warm-white hover:text-antique-gold font-serif font-medium transition-colors duration-200 flex items-center gap-3 group-hover:translate-x-1">
-                                        <i class="fas fa-user-edit text-antique-gold/60 text-sm"></i>
-                                        <div>
-                                            <div class="text-lg">
+                                        class="text-warm-white hover:text-antique-gold font-serif font-medium text-sm lg:text-base transition-colors duration-200 flex items-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 group-hover:translate-x-1 text-xs lg:text-sm lg:text-base">
+                                        <i
+                                            class="fas fa-user-edit text-antique-gold/60 text-xs lg:text-xs lg:text-sm flex-shrink-0"></i>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="text-xs lg:text-sm lg:text-base lg:text-lg truncate">
                                                 <%= author.first_name %>
                                                     <%= author.last_name %>
                                             </div>
-                                            <div class="text-xs text-aged-paper/70">Scribe #<%= author.author_id %>
+                                            <div class="text-xs text-aged-paper/70">
+                                                <span class="hidden lg:inline">Scribe #</span>#<%= author.author_id %>
                                             </div>
                                         </div>
                                     </a>
                                 </td>
-                                <td class="py-6 px-4">
+                                <td class="py-4 lg:py-6 px-2 lg:px-4 hidden sm:table-cell">
                                     <div class="text-aged-paper font-serif">
-                                        <div class="flex items-center gap-2">
-                                            <i class="fas fa-globe text-forest-green/60 text-xs"></i>
-                                            <span>
-                                                <%= author.nationality || 'Unknown origin' %>
+                                        <div class="flex items-center gap-1 lg:gap-2">
+                                            <i class="fas fa-globe text-forest-green/60 text-xs flex-shrink-0"></i>
+                                            <span class="text-xs lg:text-sm lg:text-base truncate">
+                                                <%= author.nationality || 'Unknown' %>
                                             </span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-6 px-4">
+                                <td class="py-4 lg:py-6 px-2 lg:px-4 hidden md:table-cell">
                                     <div class="text-aged-paper font-serif">
-                                        <div class="flex items-center gap-2">
-                                            <i class="fas fa-calendar text-sage-green/60 text-xs"></i>
-                                            <span>
-                                                <%= author.birth_year || 'Unknown year' %>
+                                        <div class="flex items-center gap-1 lg:gap-2">
+                                            <i class="fas fa-calendar text-sage-green/60 text-xs flex-shrink-0"></i>
+                                            <span class="text-xs lg:text-sm lg:text-base">
+                                                <%= author.birth_year || 'Unknown' %>
                                             </span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-6 px-4">
+                                <td class="py-4 lg:py-6 px-2 lg:px-4 hidden lg:table-cell">
                                     <div class="text-aged-paper font-serif">
                                         <div class="flex items-center gap-2">
-                                            <i class="fas fa-envelope text-antique-gold/60 text-xs"></i>
-                                            <span class="<%= author.email ? '' : 'italic text-aged-paper/50' %>">
+                                            <i class="fas fa-envelope text-antique-gold/60 text-xs flex-shrink-0"></i>
+                                            <span
+                                                class="<%= author.email ? '' : 'italic text-aged-paper/50' %> text-xs lg:text-sm truncate">
                                                 <%= author.email || 'No correspondence' %>
                                             </span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-6 px-4">
-                                    <div class="flex items-center justify-center gap-3">
+                                <td class="py-4 lg:py-6 px-2 lg:px-4">
+                                    <div class="flex items-center justify-center gap-1 lg:gap-1 lg:gap-2 lg:p-3">
                                         <a href="/authors/<%= author.author_id %>"
-                                            class="p-3 bg-sage-green/20 text-sage-green rounded-lg hover:bg-sage-green hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                                            class="p-2 lg:p-2 lg:p-3 bg-sage-green/20 text-sage-green rounded-md lg:rounded-lg hover:bg-sage-green hover:text-white transition-all duration-200 hover:-translate-y-0.5"
                                             title="View Scribe">
-                                            <i class="fas fa-eye text-sm"></i>
+                                            <i class="fas fa-eye text-xs lg:text-xs lg:text-sm"></i>
                                         </a>
                                         <a href="/authors/<%= author.author_id %>/edit"
-                                            class="p-3 bg-antique-gold/20 text-antique-gold rounded-lg hover:bg-antique-gold hover:text-espresso transition-all duration-200 hover:-translate-y-0.5"
+                                            class="p-2 lg:p-2 lg:p-3 bg-antique-gold/20 text-antique-gold rounded-md lg:rounded-lg hover:bg-antique-gold hover:text-espresso transition-all duration-200 hover:-translate-y-0.5"
                                             title="Edit Scribe">
-                                            <i class="fas fa-edit text-sm"></i>
+                                            <i class="fas fa-edit text-xs lg:text-xs lg:text-sm"></i>
                                         </a>
                                         <form method="POST" action="/authors/<%= author.author_id %>/delete"
                                             onsubmit="return confirmDelete('Are you certain you wish to remove this scribe from the registry?')"
                                             class="inline">
                                             <button type="submit"
-                                                class="p-3 bg-clay-red/20 text-clay-red rounded-lg hover:bg-clay-red hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                                                class="p-2 lg:p-2 lg:p-3 bg-clay-red/20 text-clay-red rounded-md lg:rounded-lg hover:bg-clay-red hover:text-white transition-all duration-200 hover:-translate-y-0.5"
                                                 title="Remove from Registry">
-                                                <i class="fas fa-user-times text-sm"></i>
+                                                <i class="fas fa-user-times text-xs lg:text-xs lg:text-sm"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -129,18 +162,28 @@
         </div>
         <% } else { %>
             <!-- Empty Scribes Registry State -->
-            <div class="text-center py-24 bg-walnut rounded-2xl border-2 border-antique-gold/30 shadow-book">
-                <div class="mb-8">
-                    <i class="fas fa-user-edit text-6xl text-antique-gold/60 mb-4"></i>
-                    <h3 class="text-warm-white text-3xl font-bold mb-4 font-serif">The Scribes Await</h3>
-                    <p class="text-aged-paper text-lg font-serif italic max-w-md mx-auto">
-                        No authors have been registered yet. Begin building your collection of literary masters.
+            <div
+                class="text-center py-10 lg:py-16 lg:py-10 lg:py-16 lg:py-24 bg-walnut rounded-lg lg:rounded-xl lg:rounded-xl lg:rounded-2xl border-2 border-antique-gold/30 shadow-book">
+                <div class="mb-6 lg:mb-8">
+                    <i
+                        class="fas fa-user-edit text-2xl lg:text-4xl lg:text-2xl lg:text-4xl lg:text-6xl text-antique-gold/60 mb-3 lg:mb-4"></i>
+                    <h3
+                        class="text-warm-white text-xl lg:text-xl sm:text-2xl lg:text-3xl font-bold mb-2 lg:mb-4 font-serif">
+                        <span class="hidden sm:inline">The Scribes Await</span>
+                        <span class="sm:hidden">No Authors</span>
+                    </h3>
+                    <p
+                        class="text-aged-paper text-xs lg:text-sm lg:text-base lg:text-lg font-serif italic max-w-md mx-auto px-4">
+                        <span class="hidden sm:inline">No authors have been registered yet. Begin building your
+                            collection of literary masters.</span>
+                        <span class="sm:hidden">No authors registered yet. Add your first author to get started.</span>
                     </p>
                 </div>
                 <a href="/authors/create"
-                    class="inline-flex items-center gap-3 px-8 py-4 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-lg">
+                    class="inline-flex items-center justify-center gap-1 lg:gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-6 lg:px-8 py-3 lg:py-4 bg-antique-gold text-espresso rounded-lg lg:rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-base lg:text-base lg:text-lg">
                     <i class="fas fa-user-plus"></i>
-                    Register First Scribe
+                    <span class="hidden sm:inline">Register First Scribe</span>
+                    <span class="sm:hidden">Add Author</span>
                 </a>
             </div>
             <% } %>

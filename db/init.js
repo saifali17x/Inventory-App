@@ -65,9 +65,9 @@ CREATE TABLE Books (
     price DECIMAL(10,2),
     copies_available INT DEFAULT 0,
     total_copies INT DEFAULT 0,
-    FOREIGN KEY (author_id) REFERENCES Authors(author_id),
-    FOREIGN KEY (publisher_id) REFERENCES Publishers(publisher_id),
-    FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id) ON DELETE RESTRICT,
+    FOREIGN KEY (publisher_id) REFERENCES Publishers(publisher_id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Members (
@@ -103,9 +103,9 @@ CREATE TABLE Transactions (
     return_date DATE NULL,
     fine_amount DECIMAL(8,2) DEFAULT 0.00,
     status transaction_status_enum DEFAULT 'Issued',
-    FOREIGN KEY (member_id) REFERENCES Members(member_id),
-    FOREIGN KEY (book_id) REFERENCES Books(book_id),
-    FOREIGN KEY (staff_id) REFERENCES Staff(staff_id)
+    FOREIGN KEY (member_id) REFERENCES Members(member_id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES Books(book_id) ON DELETE CASCADE,
+    FOREIGN KEY (staff_id) REFERENCES Staff(staff_id) ON DELETE SET NULL
 );
 
 -- Insert sample data
@@ -186,7 +186,7 @@ INSERT INTO Transactions (member_id, book_id, staff_id, issue_date, due_date, re
  * Initialize database with tables and seed data
  * Safe to run multiple times - will recreate everything
  */
-export async function initializeDatabase() {
+export const initDatabase = async () => {
   const isProd = process.env.NODE_ENV === "production";
 
   const clientConfig =
@@ -199,9 +199,8 @@ export async function initializeDatabase() {
           host: process.env.DB_HOST,
           user: process.env.DB_USER,
           database: process.env.DB_NAME,
-          password: process.env.DB_PASSWORD,
-          port: process.env.DB_PORT,
-          ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+          password: String(process.env.DB_PASSWORD),
+          port: parseInt(process.env.DB_PORT),
         };
   const client = new Client(clientConfig);
 
@@ -216,12 +215,12 @@ export async function initializeDatabase() {
   } finally {
     await client.end();
   }
-}
+};
 
 /**
  * Check if database tables exist
  */
-export async function isDatabaseInitialized() {
+export const checkDatabase = async () => {
   const isProd = process.env.NODE_ENV === "production";
 
   const clientConfig =
@@ -234,9 +233,8 @@ export async function isDatabaseInitialized() {
           host: process.env.DB_HOST,
           user: process.env.DB_USER,
           database: process.env.DB_NAME,
-          password: process.env.DB_PASSWORD,
-          port: process.env.DB_PORT,
-          ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
+          password: String(process.env.DB_PASSWORD),
+          port: parseInt(process.env.DB_PORT),
         };
 
   const client = new Client(clientConfig);
@@ -256,4 +254,4 @@ export async function isDatabaseInitialized() {
   } finally {
     await client.end();
   }
-}
+};

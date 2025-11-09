@@ -2,7 +2,10 @@ import dotenv from "dotenv";
 dotenv.config({ quiet: true });
 import express from "express";
 import expressLayouts from "express-ejs-layouts";
-import { initializeDatabase, isDatabaseInitialized } from "./db/init.js";
+import {
+  initDatabase as initializeDatabase,
+  checkDatabase as isDatabaseInitialized,
+} from "./db/init.js";
 
 // Import routes
 import indexRouter from "./routes/index.js";

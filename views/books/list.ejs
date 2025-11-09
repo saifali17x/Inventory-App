@@ -1,44 +1,57 @@
 <!-- Library Collection Archive -->
-<div class="mb-12">
+<div class="mb-8 lg:mb-8 lg:mb-12">
     <!-- Elegant Header with Manuscript Style -->
-    <div class="text-center mb-12">
-        <div class="bg-charcoal px-8 inline-block">
-            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wider">
-                <i class="fas fa-book-open text-antique-gold mr-4"></i>
-                The Great Collection
-                <i class="fas fa-book-open text-antique-gold ml-4"></i>
+    <div class="text-center mb-8 lg:mb-8 lg:mb-8 lg:mb-12 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-antique-gold/20 to-transparent h-px top-1/2">
+        </div>
+        <div class="relative bg-charcoal px-4 sm:px-6 lg:px-4 sm:px-6 lg:px-8 inline-block">
+            <h1
+                class="text-warm-white text-2xl sm:text-3xl lg:text-2xl lg:text-4xl font-bold mb-2 lg:mb-4 font-serif tracking-wider">
+                <i
+                    class="fas fa-book-open text-antique-gold mr-2 lg:mr-2 lg:mr-4 text-base lg:text-lg sm:text-xl lg:text-2xl"></i>
+                <span class="hidden sm:inline">The Great Collection</span>
+                <span class="sm:hidden">Books</span>
+                <i
+                    class="fas fa-book-open text-antique-gold ml-2 lg:ml-2 lg:ml-4 text-base lg:text-lg sm:text-xl lg:text-2xl"></i>
             </h1>
-            <p class="text-parchment text-lg italic">Catalog of Literary Treasures</p>
+            <p
+                class="text-parchment text-xs lg:text-sm sm:text-base lg:text-xs lg:text-sm sm:text-base lg:text-base lg:text-lg italic">
+                <span class="hidden sm:inline">Catalog of Literary Treasures</span>
+                <span class="sm:hidden">Book Catalog</span>
+            </p>
         </div>
     </div>
 
     <!-- Action Bar -->
-    <div class="flex justify-between items-center mb-8">
-        <div class="text-aged-paper font-serif">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 lg:mb-8">
+        <div class="text-aged-paper font-serif text-center sm:text-left">
             <i class="fas fa-scroll mr-2 text-antique-gold"></i>
-            <span class="text-lg">
-                <%= books.length %> volumes in collection
+            <span class="text-base lg:text-base lg:text-lg">
+                <%= books.length %>
+                    <span class="hidden sm:inline">volumes in collection</span>
+                    <span class="sm:hidden">books</span>
             </span>
         </div>
         <a href="/books/create"
-            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 lg:px-6 py-2 lg:py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-xs lg:text-sm lg:text-base">
             <i class="fas fa-book-plus"></i>
-            Catalog New Volume
+            <span class="hidden sm:inline">Catalog New Volume</span>
+            <span class="sm:hidden">Add Book</span>
         </a>
     </div>
 
     <% if (books.length> 0) { %>
         <!-- Elegant Library Catalog Table -->
-        <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+        <div class="bg-walnut rounded-xl lg:rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
             <div
-                class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-6 py-4 border-b border-antique-gold/30">
+                class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-4 lg:px-4 lg:px-6 py-2 lg:py-3 lg:py-4 border-b border-antique-gold/30">
                 <h2 class="text-warm-white font-serif font-bold text-xl flex items-center gap-2">
                     <i class="fas fa-archive text-antique-gold"></i>
                     Collection Registry
                 </h2>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto -mx-2 lg:mx-0">
                 <table class="w-full">
                     <thead>
                         <tr class="bg-deep-walnut border-b border-antique-gold/20">
@@ -56,8 +69,8 @@
                             <tr class="hover:bg-deep-walnut/50 transition-all duration-200 group">
                                 <td class="py-4 px-6">
                                     <a href="/books/<%= book.book_id %>"
-                                        class="text-warm-white hover:text-antique-gold font-serif font-medium transition-colors duration-200 flex items-center gap-2 group-hover:translate-x-1">
-                                        <i class="fas fa-book text-antique-gold/60 text-sm"></i>
+                                        class="text-warm-white hover:text-antique-gold font-serif font-medium text-sm lg:text-base transition-colors duration-200 flex items-center gap-2 group-hover:translate-x-1">
+                                        <i class="fas fa-book text-antique-gold/60 text-xs lg:text-sm"></i>
                                         <%= book.title %>
                                     </a>
                                 </td>
@@ -87,12 +100,12 @@
                                         <a href="/books/<%= book.book_id %>"
                                             class="p-2 bg-sage-green/20 text-sage-green rounded-lg hover:bg-sage-green hover:text-white transition-all duration-200 hover:-translate-y-0.5"
                                             title="View Details">
-                                            <i class="fas fa-eye text-sm"></i>
+                                            <i class="fas fa-eye text-xs lg:text-sm"></i>
                                         </a>
                                         <a href="/books/<%= book.book_id %>/edit"
                                             class="p-2 bg-antique-gold/20 text-antique-gold rounded-lg hover:bg-antique-gold hover:text-espresso transition-all duration-200 hover:-translate-y-0.5"
                                             title="Edit Book">
-                                            <i class="fas fa-edit text-sm"></i>
+                                            <i class="fas fa-edit text-xs lg:text-sm"></i>
                                         </a>
                                         <form method="POST" action="/books/<%= book.book_id %>/delete"
                                             onsubmit="return confirmDelete('Are you sure you want to remove this volume from the archives?')"
@@ -100,7 +113,7 @@
                                             <button type="submit"
                                                 class="p-2 bg-clay-red/20 text-clay-red rounded-lg hover:bg-clay-red hover:text-white transition-all duration-200 hover:-translate-y-0.5"
                                                 title="Remove from Collection">
-                                                <i class="fas fa-trash text-sm"></i>
+                                                <i class="fas fa-trash text-xs lg:text-sm"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -113,16 +126,18 @@
         </div>
         <% } else { %>
             <!-- Empty Collection State -->
-            <div class="text-center py-24 bg-walnut rounded-2xl border-2 border-antique-gold/30 shadow-book">
+            <div
+                class="text-center py-10 lg:py-16 lg:py-24 bg-walnut rounded-xl lg:rounded-2xl border-2 border-antique-gold/30 shadow-book">
                 <div class="mb-8">
-                    <i class="fas fa-scroll text-6xl text-antique-gold/60 mb-4"></i>
-                    <h3 class="text-warm-white text-3xl font-bold mb-4 font-serif">The Archive Awaits</h3>
-                    <p class="text-aged-paper text-lg font-serif italic max-w-md mx-auto">
+                    <i class="fas fa-scroll text-2xl lg:text-4xl lg:text-6xl text-antique-gold/60 mb-4"></i>
+                    <h3 class="text-warm-white text-xl sm:text-2xl lg:text-3xl font-bold mb-4 font-serif">The Archive
+                        Awaits</h3>
+                    <p class="text-aged-paper text-base lg:text-lg font-serif italic max-w-md mx-auto">
                         No volumes have been cataloged yet. Begin building your literary collection.
                     </p>
                 </div>
                 <a href="/books/create"
-                    class="inline-flex items-center gap-3 px-8 py-4 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-lg">
+                    class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-6 lg:px-8 py-3 lg:py-4 bg-antique-gold text-espresso rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-base lg:text-lg">
                     <i class="fas fa-feather-alt"></i>
                     Inscribe First Volume
                 </a>

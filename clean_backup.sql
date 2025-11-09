@@ -29,7 +29,6 @@ CREATE TYPE public.member_status_enum AS ENUM (
 );
 
 
-ALTER TYPE public.member_status_enum OWNER TO seezy;
 
 --
 -- Name: membership_type_enum; Type: TYPE; Schema: public; Owner: seezy
@@ -42,7 +41,6 @@ CREATE TYPE public.membership_type_enum AS ENUM (
 );
 
 
-ALTER TYPE public.membership_type_enum OWNER TO seezy;
 
 --
 -- Name: transaction_status_enum; Type: TYPE; Schema: public; Owner: seezy
@@ -55,7 +53,6 @@ CREATE TYPE public.transaction_status_enum AS ENUM (
 );
 
 
-ALTER TYPE public.transaction_status_enum OWNER TO seezy;
 
 SET default_tablespace = '';
 
@@ -75,7 +72,6 @@ CREATE TABLE public.authors (
 );
 
 
-ALTER TABLE public.authors OWNER TO seezy;
 
 --
 -- Name: authors_author_id_seq; Type: SEQUENCE; Schema: public; Owner: seezy
@@ -90,7 +86,6 @@ CREATE SEQUENCE public.authors_author_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.authors_author_id_seq OWNER TO seezy;
 
 --
 -- Name: authors_author_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: seezy
@@ -118,7 +113,6 @@ CREATE TABLE public.books (
 );
 
 
-ALTER TABLE public.books OWNER TO seezy;
 
 --
 -- Name: books_book_id_seq; Type: SEQUENCE; Schema: public; Owner: seezy
@@ -133,7 +127,6 @@ CREATE SEQUENCE public.books_book_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.books_book_id_seq OWNER TO seezy;
 
 --
 -- Name: books_book_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: seezy
@@ -154,7 +147,6 @@ CREATE TABLE public.categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO seezy;
 
 --
 -- Name: categories_category_id_seq; Type: SEQUENCE; Schema: public; Owner: seezy
@@ -169,7 +161,6 @@ CREATE SEQUENCE public.categories_category_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.categories_category_id_seq OWNER TO seezy;
 
 --
 -- Name: categories_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: seezy
@@ -195,7 +186,6 @@ CREATE TABLE public.members (
 );
 
 
-ALTER TABLE public.members OWNER TO seezy;
 
 --
 -- Name: members_member_id_seq; Type: SEQUENCE; Schema: public; Owner: seezy
@@ -210,7 +200,6 @@ CREATE SEQUENCE public.members_member_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.members_member_id_seq OWNER TO seezy;
 
 --
 -- Name: members_member_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: seezy
@@ -233,7 +222,6 @@ CREATE TABLE public.publishers (
 );
 
 
-ALTER TABLE public.publishers OWNER TO seezy;
 
 --
 -- Name: publishers_publisher_id_seq; Type: SEQUENCE; Schema: public; Owner: seezy
@@ -248,7 +236,6 @@ CREATE SEQUENCE public.publishers_publisher_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.publishers_publisher_id_seq OWNER TO seezy;
 
 --
 -- Name: publishers_publisher_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: seezy
@@ -273,7 +260,6 @@ CREATE TABLE public.staff (
 );
 
 
-ALTER TABLE public.staff OWNER TO seezy;
 
 --
 -- Name: staff_staff_id_seq; Type: SEQUENCE; Schema: public; Owner: seezy
@@ -288,7 +274,6 @@ CREATE SEQUENCE public.staff_staff_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.staff_staff_id_seq OWNER TO seezy;
 
 --
 -- Name: staff_staff_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: seezy
@@ -314,7 +299,6 @@ CREATE TABLE public.transactions (
 );
 
 
-ALTER TABLE public.transactions OWNER TO seezy;
 
 --
 -- Name: transactions_transaction_id_seq; Type: SEQUENCE; Schema: public; Owner: seezy
@@ -329,7 +313,6 @@ CREATE SEQUENCE public.transactions_transaction_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.transactions_transaction_id_seq OWNER TO seezy;
 
 --
 -- Name: transactions_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: seezy

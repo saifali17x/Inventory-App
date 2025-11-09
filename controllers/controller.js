@@ -117,8 +117,9 @@ export const deleteBook = async (req, res) => {
     res.redirect("/books");
   } catch (error) {
     console.error("Error deleting book:", error);
-    res.status(500).render("error", {
-      error: "Failed to delete book. It may be currently borrowed.",
+    return res.status(400).render("error", {
+      error:
+        error.message || "Failed to delete book. It may be currently borrowed.",
     });
   }
 };
@@ -197,8 +198,10 @@ export const deleteAuthor = async (req, res) => {
     res.redirect("/authors");
   } catch (error) {
     console.error("Error deleting author:", error);
-    res.status(500).render("error", {
-      error: "Failed to delete author. They may have books in the system.",
+    return res.status(400).render("error", {
+      error:
+        error.message ||
+        "Failed to delete author. They may have books in the system.",
     });
   }
 };
@@ -275,21 +278,15 @@ export const updateCategory = async (req, res) => {
 
 export const deleteCategory = async (req, res) => {
   try {
-    const { category, books } = await queries.getCategoryWithBooks(
-      req.params.id
-    );
-
-    if (books.length > 0) {
-      return res.status(400).render("error", {
-        error: `Cannot delete category "${category.category_name}" because it has ${books.length} books. Please reassign or delete the books first.`,
-      });
-    }
-
     await queries.deleteCategory(req.params.id);
     res.redirect("/categories");
   } catch (error) {
     console.error("Error deleting category:", error);
-    res.status(500).render("error", { error: "Failed to delete category" });
+    return res.status(400).render("error", {
+      error:
+        error.message ||
+        "Failed to delete category. It may have books assigned to it.",
+    });
   }
 };
 
@@ -367,8 +364,10 @@ export const deleteMember = async (req, res) => {
     res.redirect("/members");
   } catch (error) {
     console.error("Error deleting member:", error);
-    res.status(500).render("error", {
-      error: "Failed to delete member. They may have active transactions.",
+    return res.status(400).render("error", {
+      error:
+        error.message ||
+        "Failed to delete member. They may have active transactions.",
     });
   }
 };

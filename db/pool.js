@@ -20,7 +20,6 @@ const poolConfig = process.env.DATABASE_URL
       port: parseInt(process.env.DB_PORT),
       ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
     };
-
 const pool = new Pool(poolConfig);
 
 export default pool;

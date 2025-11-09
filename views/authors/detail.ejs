@@ -1,51 +1,64 @@
 <!-- Scribe Profile Archive -->
-<div class="mb-8">
+<div class="mb-6 lg:mb-8">
     <!-- Navigation & Actions -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+    <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 lg:gap-2 lg:p-3 lg:gap-4 mb-6 lg:mb-8">
         <a href="/authors"
-            class="inline-flex items-center gap-3 px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30">
+            class="inline-flex items-center justify-center sm:justify-start gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-3 lg:px-4 py-2 bg-deep-walnut text-aged-paper rounded-lg hover:bg-walnut transition-all duration-200 hover:-translate-y-0.5 border border-antique-gold/30 text-xs lg:text-sm lg:text-base">
             <i class="fas fa-arrow-left"></i>
-            <span class="font-serif">Return to Hall of Scribes</span>
+            <span class="font-serif">
+                <span class="hidden sm:inline">Return to Hall of Scribes</span>
+                <span class="sm:hidden">Back to Authors</span>
+            </span>
         </a>
         <a href="/authors/<%= author.author_id %>/edit"
-            class="inline-flex items-center gap-3 px-6 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+            class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-4 lg:px-6 py-2 lg:py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1 text-xs lg:text-sm lg:text-base">
             <i class="fas fa-quill-pen"></i>
-            Revise Entry
+            <span class="hidden sm:inline">Revise Entry</span>
+            <span class="sm:hidden">Edit</span>
         </a>
     </div>
 
     <!-- Scribe Profile Card -->
-    <div class="bg-walnut rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
+    <div
+        class="bg-walnut rounded-lg lg:rounded-xl lg:rounded-xl lg:rounded-2xl shadow-book border-2 border-antique-gold/30 overflow-hidden">
         <!-- Profile Header -->
         <div
-            class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-8 py-12 border-b border-antique-gold/30 text-center relative">
+            class="bg-gradient-to-r from-antique-gold/20 via-parchment/10 to-antique-gold/20 px-4 sm:px-6 lg:px-8 py-8 lg:py-12 border-b border-antique-gold/30 text-center relative">
             <div
                 class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-antique-gold/50 via-parchment to-antique-gold/50">
             </div>
-            <h1 class="text-warm-white text-4xl font-bold mb-4 font-serif tracking-wide">
+            <h1
+                class="text-warm-white text-2xl sm:text-3xl lg:text-2xl lg:text-4xl font-bold mb-3 lg:mb-4 font-serif tracking-wide">
                 <%= author.first_name %>
                     <%= author.last_name %>
             </h1>
-            <div class="text-parchment/80 text-sm font-serif italic tracking-widest mb-4">
-                Master of Letters • Scribe #<%= author.author_id %>
+            <div class="text-parchment/80 text-xs sm:text-xs lg:text-sm font-serif italic tracking-widest mb-3 lg:mb-4">
+                <span class="hidden sm:inline">Master of Letters • </span>Scribe #<%= author.author_id %>
             </div>
-            <div class="mt-4 flex justify-center">
-                <i class="fas fa-user-edit text-antique-gold/40 text-2xl"></i>
+            <div class="mt-3 lg:mt-4 flex justify-center">
+                <i class="fas fa-user-edit text-antique-gold/40 text-xl lg:text-2xl"></i>
             </div>
         </div>
 
         <!-- Information Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+        <div
+            class="grid grid-cols-1 xl:grid-cols-2 gap-1 lg:gap-2 lg:p-3 sm:gap-4 lg:gap-6 lg:gap-4 sm:p-6 lg:p-8 p-4 sm:p-6 lg:p-4 sm:p-6 lg:p-8">
             <!-- Scribe Details -->
-            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-antique-gold/20">
-                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+            <div
+                class="bg-deep-walnut/50 p-4 lg:p-6 rounded-lg lg:rounded-lg lg:rounded-xl border border-antique-gold/20">
+                <h3
+                    class="text-warm-white text-base lg:text-lg lg:text-base lg:text-lg lg:text-xl font-bold mb-4 lg:mb-6 font-serif flex items-center gap-2">
                     <i class="fas fa-scroll text-antique-gold"></i>
-                    Scribe Details
+                    <span class="hidden sm:inline">Scribe Details</span>
+                    <span class="sm:hidden">Details</span>
                 </h3>
-                <div class="space-y-4">
+                <div class="space-y-3 lg:space-y-4">
                     <div class="flex flex-col gap-1">
-                        <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Full Name</label>
-                        <span class="text-warm-white font-serif text-lg">
+                        <label
+                            class="text-parchment/70 text-xs lg:text-xs lg:text-sm font-serif uppercase tracking-wider">Full
+                            Name</label>
+                        <span class="text-warm-white font-serif text-base lg:text-base lg:text-lg">
                             <%= author.first_name %>
                                 <%= author.last_name %>
                         </span>
@@ -53,10 +66,14 @@
 
                     <% if (author.nationality) { %>
                         <div class="flex flex-col gap-1">
-                            <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Land of
-                                Origin</label>
-                            <span class="text-aged-paper font-serif flex items-center gap-2">
-                                <i class="fas fa-globe text-forest-green/60 text-sm"></i>
+                            <label
+                                class="text-parchment/70 text-xs lg:text-xs lg:text-sm font-serif uppercase tracking-wider">
+                                <span class="hidden lg:inline">Land of Origin</span>
+                                <span class="lg:hidden">Country</span>
+                            </label>
+                            <span
+                                class="text-aged-paper font-serif flex items-center gap-2 text-xs lg:text-sm lg:text-base">
+                                <i class="fas fa-globe text-forest-green/60 text-xs lg:text-sm flex-shrink-0"></i>
                                 <%= author.nationality %>
                             </span>
                         </div>
@@ -64,10 +81,15 @@
 
                             <% if (author.birth_year) { %>
                                 <div class="flex flex-col gap-1">
-                                    <label class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Year of
-                                        Birth</label>
-                                    <span class="text-aged-paper font-serif flex items-center gap-2">
-                                        <i class="fas fa-calendar text-sage-green/60 text-sm"></i>
+                                    <label
+                                        class="text-parchment/70 text-xs lg:text-xs lg:text-sm font-serif uppercase tracking-wider">
+                                        <span class="hidden lg:inline">Year of Birth</span>
+                                        <span class="lg:hidden">Birth Year</span>
+                                    </label>
+                                    <span
+                                        class="text-aged-paper font-serif flex items-center gap-2 text-xs lg:text-sm lg:text-base">
+                                        <i
+                                            class="fas fa-calendar text-sage-green/60 text-xs lg:text-sm flex-shrink-0"></i>
                                         <%= author.birth_year %>
                                     </span>
                                 </div>
@@ -76,10 +98,10 @@
                                     <% if (author.email) { %>
                                         <div class="flex flex-col gap-1">
                                             <label
-                                                class="text-parchment/70 text-sm font-serif uppercase tracking-wider">Correspondence
+                                                class="text-parchment/70 text-xs lg:text-sm font-serif uppercase tracking-wider">Correspondence
                                                 Address</label>
                                             <span class="text-aged-paper font-serif flex items-center gap-2">
-                                                <i class="fas fa-envelope text-antique-gold/60 text-sm"></i>
+                                                <i class="fas fa-envelope text-antique-gold/60 text-xs lg:text-sm"></i>
                                                 <%= author.email %>
                                             </span>
                                         </div>
@@ -88,8 +110,9 @@
             </div>
 
             <!-- Literary Works -->
-            <div class="bg-deep-walnut/50 p-6 rounded-xl border border-forest-green/20">
-                <h3 class="text-warm-white text-xl font-bold mb-6 font-serif flex items-center gap-2">
+            <div class="bg-deep-walnut/50 p-6 rounded-lg lg:rounded-xl border border-forest-green/20">
+                <h3
+                    class="text-warm-white text-base lg:text-lg lg:text-xl font-bold mb-6 font-serif flex items-center gap-2">
                     <i class="fas fa-book-open text-forest-green"></i>
                     Literary Works
                 </h3>
@@ -101,11 +124,11 @@
                                 <h4 class="text-warm-white font-serif font-bold mb-2">
                                     <a href="/books/<%= book.book_id %>"
                                         class="hover:text-antique-gold transition-colors duration-200 flex items-center gap-2">
-                                        <i class="fas fa-book text-antique-gold/60 text-sm"></i>
+                                        <i class="fas fa-book text-antique-gold/60 text-xs lg:text-sm"></i>
                                         <%= book.title %>
                                     </a>
                                 </h4>
-                                <div class="flex flex-wrap items-center gap-3 text-sm">
+                                <div class="flex flex-wrap items-center gap-1 lg:gap-2 lg:p-3 text-xs lg:text-sm">
                                     <span
                                         class="px-3 py-1 rounded-full bg-forest-green/20 text-forest-green border border-forest-green/30 font-serif">
                                         <%= book.category_name %>
@@ -126,7 +149,7 @@
                     </div>
                     <% } else { %>
                         <div class="text-center py-8">
-                            <i class="fas fa-feather text-4xl text-aged-paper/50 mb-4"></i>
+                            <i class="fas fa-feather text-2xl lg:text-4xl text-aged-paper/50 mb-4"></i>
                             <p class="text-aged-paper italic font-serif">No works cataloged yet</p>
                         </div>
                         <% } %>
@@ -137,7 +160,7 @@
         <div class="px-8 py-6 bg-gradient-to-r from-deep-walnut/30 to-transparent border-t border-antique-gold/20">
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="/authors/<%= author.author_id %>/edit"
-                    class="inline-flex items-center justify-center gap-3 px-8 py-3 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
+                    class="inline-flex items-center justify-center gap-1 lg:gap-2 lg:p-3 px-8 py-3 bg-antique-gold text-espresso rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment transition-all duration-300 shadow-warm hover:-translate-y-1">
                     <i class="fas fa-edit"></i>
                     Revise Entry
                 </a>
@@ -145,7 +168,7 @@
                     onsubmit="return confirmDelete('Are you certain you wish to remove this scribe from the registry? This action cannot be undone.')"
                     class="inline">
                     <button type="submit"
-                        class="inline-flex items-center justify-center gap-3 px-8 py-3 bg-clay-red/20 text-clay-red border-2 border-clay-red/40 rounded-xl font-bold font-serif hover:bg-clay-red hover:text-white transition-all duration-300 hover:-translate-y-1">
+                        class="inline-flex items-center justify-center gap-1 lg:gap-2 lg:p-3 px-8 py-3 bg-clay-red/20 text-clay-red border-2 border-clay-red/40 rounded-lg lg:rounded-xl font-bold font-serif hover:bg-clay-red hover:text-white transition-all duration-300 hover:-translate-y-1">
                         <i class="fas fa-user-times"></i>
                         Remove from Registry
                     </button>

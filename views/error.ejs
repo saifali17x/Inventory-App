@@ -1,23 +1,30 @@
 <!-- Library Error Page - Like a Torn Manuscript -->
-<div class="flex justify-center items-center min-h-96">
+<div class="flex justify-center items-center min-h-80 lg:min-h-96 px-4">
     <div
-        class="text-center bg-walnut p-16 rounded-2xl shadow-book border-2 border-rust-red/40 relative overflow-hidden max-w-2xl">
+        class="text-center bg-walnut p-4 sm:p-6 lg:p-8 sm:p-12 lg:p-16 rounded-lg lg:rounded-xl lg:rounded-xl lg:rounded-2xl shadow-book border-2 border-rust-red/40 relative overflow-hidden max-w-2xl w-full">
         <!-- Decorative border effect -->
         <div class="absolute inset-0 bg-gradient-to-br from-rust-red/10 to-transparent"></div>
-        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-rust-red via-clay-red to-rust-red"></div>
+        <div class="absolute top-0 left-0 w-full h-1 lg:h-2 bg-gradient-to-r from-rust-red via-clay-red to-rust-red">
+        </div>
 
         <div class="relative">
-            <i class="fas fa-scroll text-8xl text-rust-red mb-6 opacity-80"></i>
-            <h1 class="text-warm-white text-4xl font-bold mb-6 font-serif">A Page Has Been Lost...</h1>
-            <div class="bg-deep-walnut/50 p-6 rounded-lg border border-rust-red/30 mb-8">
-                <p class="text-parchment text-xl italic font-serif">
+            <i
+                class="fas fa-scroll text-3xl lg:text-5xl sm:text-2xl lg:text-4xl lg:text-6xl lg:text-8xl text-rust-red mb-4 lg:mb-6 opacity-80"></i>
+            <h1
+                class="text-warm-white text-2xl sm:text-3xl lg:text-2xl sm:text-3xl lg:text-2xl lg:text-4xl font-bold mb-2 lg:mb-4 lg:mb-6 font-serif">
+                <span class="hidden sm:inline">A Page Has Been Lost...</span>
+                <span class="sm:hidden">Page Not Found</span>
+            </h1>
+            <div class="bg-deep-walnut/50 p-4 lg:p-6 rounded-lg border border-rust-red/30 mb-6 lg:mb-8">
+                <p class="text-parchment text-base sm:text-base lg:text-lg lg:text-xl italic font-serif">
                     <%= error %>
                 </p>
             </div>
             <a href="/"
-                class="inline-flex items-center gap-3 px-8 py-4 bg-antique-gold text-espresso rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-lg">
+                class="inline-flex items-center justify-center gap-2 lg:gap-1 lg:gap-2 lg:p-3 px-6 lg:px-8 py-3 lg:py-4 bg-antique-gold text-espresso rounded-lg lg:rounded-lg lg:rounded-xl font-bold font-serif hover:bg-parchment hover:-translate-y-1 transition-all duration-300 shadow-warm text-base lg:text-base lg:text-lg">
                 <i class="fas fa-home"></i>
-                Return to the Library
+                <span class="hidden sm:inline">Return to the Library</span>
+                <span class="sm:hidden">Home</span>
             </a>
         </div>
     </div>
