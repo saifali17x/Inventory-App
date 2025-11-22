@@ -20,6 +20,18 @@ const poolConfig = process.env.DATABASE_URL
       port: parseInt(process.env.DB_PORT),
       ...(isProd ? { ssl: { rejectUnauthorized: false } } : {}),
     };
+
+// Add performance optimizations for production
+if (isProd && process.env.DATABASE_URL) {
+  poolConfig.max = 10; // Maximum connections in pool
+  poolConfig.min = 2;  // Minimum connections to maintain
+  poolConfig.idle = 10000; // Close idle connections after 10s
+  poolConfig.acquireTimeoutMillis = 30000; // Wait 30s for connection
+  poolConfig.createTimeoutMillis = 30000; // 30s to create connection
+  poolConfig.destroyTimeoutMillis = 5000; // 5s to destroy connection
+  poolConfig.createRetryIntervalMillis = 200; // Retry every 200ms
+}
+
 const pool = new Pool(poolConfig);
 
 export default pool;
