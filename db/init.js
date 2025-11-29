@@ -187,21 +187,19 @@ INSERT INTO Transactions (member_id, book_id, staff_id, issue_date, due_date, re
  * Safe to run multiple times - will recreate everything
  */
 export const initDatabase = async () => {
-  const isProd = process.env.NODE_ENV === "production";
-
-  const clientConfig =
-    isProd && process.env.DATABASE_URL
-      ? {
-          connectionString: process.env.DATABASE_URL,
-          ssl: { rejectUnauthorized: false },
-        }
-      : {
-          host: process.env.DB_HOST,
-          user: process.env.DB_USER,
-          database: process.env.DB_NAME,
-          password: String(process.env.DB_PASSWORD),
-          port: parseInt(process.env.DB_PORT),
-        };
+  // Use the same simplified logic as db.js
+  const clientConfig = process.env.DATABASE_URL
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+      }
+    : {
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        database: process.env.DB_NAME,
+        password: String(process.env.DB_PASSWORD),
+        port: parseInt(process.env.DB_PORT),
+      };
   const client = new Client(clientConfig);
 
   try {
@@ -221,21 +219,19 @@ export const initDatabase = async () => {
  * Check if database tables exist
  */
 export const checkDatabase = async () => {
-  const isProd = process.env.NODE_ENV === "production";
-
-  const clientConfig =
-    isProd && process.env.DATABASE_URL
-      ? {
-          connectionString: process.env.DATABASE_URL,
-          ssl: { rejectUnauthorized: false },
-        }
-      : {
-          host: process.env.DB_HOST,
-          user: process.env.DB_USER,
-          database: process.env.DB_NAME,
-          password: String(process.env.DB_PASSWORD),
-          port: parseInt(process.env.DB_PORT),
-        };
+  // Same config here
+  const clientConfig = process.env.DATABASE_URL
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+      }
+    : {
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        database: process.env.DB_NAME,
+        password: String(process.env.DB_PASSWORD),
+        port: parseInt(process.env.DB_PORT),
+      };
 
   const client = new Client(clientConfig);
 

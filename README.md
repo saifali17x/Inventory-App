@@ -4,7 +4,7 @@ Elegant library inventory built with Express, EJS, TailwindCSS and PostgreSQL. I
 
 ## 🌐 Live Demo
 
-**[https://inventory-app-production-a138.up.railway.app/](https://inventory-app-production-a138.up.railway.app/)**
+**[https://inventory-app-7ojo.onrender.com/](https://inventory-app-7ojo.onrender.com/)**
 
 > Database attribution: The original schema and seed data were written in **MySQL** in my previous project (https://github.com/saifali17x/LibraryMS_DB.git). For this application I performed a full conversion to **PostgreSQL** (ENUM types, functions, serial keys, and procedural logic) and adapted it to the Express/EJS stack.
 
